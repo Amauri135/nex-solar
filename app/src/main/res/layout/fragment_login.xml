@@ -6,20 +6,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".LoginFragment"
     android:gravity="center"
-    android:background="#171717" >
+    android:backgroundTint="@color/black"
+    android:backgroundTintMode="add"
+    android:background="@drawable/background_formularios" >
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        app:srcCompat="@mipmap/ic_logo_foreground" />
 
     <EditText
         android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginStart="20pt"
-        android:layout_marginEnd="20pt"
-        android:inputType="textEmailAddress"
-        android:autofillHints="emailAddress"
+        android:layout_below="@id/logo"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="20pt"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20pt"
+        android:autofillHints="emailAddress"
+        android:hint="@string/e_mail"
+        android:inputType="textEmailAddress"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:hint="@string/e_mail"/>
+        android:textColorHint="@color/hints" />
 
     <EditText
         android:id="@+id/editTextSenha"
@@ -32,7 +44,7 @@
         android:autofillHints="password"
         android:inputType="textPassword"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/hints"
         android:layout_below="@id/editTextUsername"/>
 
     <Button
@@ -45,9 +57,8 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="20pt"
         android:background="@drawable/btn_border_radius"
-        android:text="@string/iniciar_sessao"
-        app:backgroundTint="@color/black"
-        app:backgroundTintMode="add" />
+        android:text="@string/login"
+        app:backgroundTint="@color/botoes" />
 
     <Button
         android:id="@+id/buttonCriarConta"
@@ -59,8 +70,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_border_radius"
         android:text="@string/criar_conta"
-        app:backgroundTint="@color/black"
-        app:backgroundTintMode="add" />
+        app:backgroundTint="@color/botoes" />
 
     <TextView
         android:id="@+id/textViewEsqueciASenha"
@@ -69,7 +79,7 @@
         android:layout_below="@id/buttonCriarConta"
         android:layout_alignEnd="@id/buttonCriarConta"
         android:layout_marginTop="20pt"
-        android:textColor="#FFAB00"
-        android:text="@string/esqueci_minha_senha"/>
+        android:text="@string/esqueci_minha_senha"
+        android:textColor="@color/vermelho" />
 
 </RelativeLayout>

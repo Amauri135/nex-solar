@@ -5,14 +5,15 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".CadastrarProdutoFragment">
+    tools:context=".CadastrarProdutoFragment"
+    android:gravity="center">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -140,7 +141,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_border_radius"
                 android:text="@string/salvar"
-                app:backgroundTint="@color/principal" />
+                app:backgroundTint="@color/botoes" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

@@ -16,7 +16,11 @@
     <string name="retirar">Retirar</string>
     <string name="devolver">Devolver</string>
     <string name="alterar">Alterar</string>
-    <string name="ver_estoque">Ver Estoque</string>
+    <string name="ver_estoque">Ver\nEstoque</string>
     <string name="salvar">Salvar</string>
     <string name="toque_para_digitar">Toque para digitar...</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="ultimas_acoes">Últimas\nAções</string>
+    <string name="liberar_acessos">Liberar\nAcessos</string>
+    <string name="login">Login</string>
 </resources>

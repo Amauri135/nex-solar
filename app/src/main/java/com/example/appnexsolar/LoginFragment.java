@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.appnexsolar.databinding.FragmentInicialBinding;
+import com.example.appnexsolar.databinding.FragmentLoginBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -27,12 +27,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginFragment extends Fragment {
 
-    private FragmentInicialBinding binding;
+    private FragmentLoginBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       binding = FragmentInicialBinding.inflate(inflater, container, false);
+       binding = FragmentLoginBinding.inflate(inflater, container, false);
 
         View root = binding.getRoot();
 
