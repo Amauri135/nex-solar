@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <item
+        android:icon="@drawable/ic_retirar"
+        android:id="@+id/itemRetirada"
+        android:title="@string/retirar" />
+
+    <item
+        android:icon="@drawable/ic_devolver"
+        android:id="@+id/itemDevolucao"
+        android:title="@string/devolver" />
+
+    <item
+        android:id="@+id/itemVerFotos"
+        android:title ="Ver Fotos" />
+</menu>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CriarContaFragment"
+    android:gravity="center"
+    android:background="#171717">
+
+    <EditText
+        android:id="@+id/editTextCriarNome"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20pt"
+        android:layout_marginEnd="20pt"
+        android:autofillHints="name"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:hint="@string/nome_completo"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editTextCriarUsername"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextCriarNome"
+        android:layout_alignStart="@id/editTextCriarNome"
+        android:layout_alignEnd="@id/editTextCriarNome"
+        android:layout_marginTop="10dp"
+        android:autofillHints="emailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:hint="@string/e_mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editTextCriarSenha"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextCriarUsername"
+        android:layout_alignStart="@id/editTextCriarUsername"
+        android:layout_alignEnd="@id/editTextCriarUsername"
+        android:layout_marginTop="10dp"
+        android:autofillHints="password"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:hint="@string/senha"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editTextConfirmarCriarSenha"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextCriarSenha"
+        android:layout_alignStart="@id/editTextCriarSenha"
+        android:layout_alignEnd="@id/editTextCriarSenha"
+        android:layout_marginTop="10dp"
+        android:autofillHints="password"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:hint="@string/confirmar_senha"
+        android:inputType="textPassword" />
+
+    <CheckBox
+        android:id="@+id/checkboxConfirmarSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextCriarSenha"
+        android:layout_toEndOf="@id/editTextConfirmarCriarSenha"
+        android:clickable="false"
+        android:textColor="@color/white" />
+
+    <Spinner
+        android:id="@+id/spinnerTipoUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextConfirmarCriarSenha"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        android:layout_alignStart="@id/editTextConfirmarCriarSenha"
+        android:layout_alignEnd="@id/editTextConfirmarCriarSenha"/>
+
+    <Spinner
+        android:id="@+id/spinnerFiliais"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerTipoUsuario"
+        android:layout_alignStart="@id/spinnerTipoUsuario"
+        android:layout_alignEnd="@id/spinnerTipoUsuario"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/buttonRegistrarConta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerFiliais"
+        android:layout_alignStart="@id/editTextConfirmarCriarSenha"
+        android:layout_alignEnd="@id/editTextConfirmarCriarSenha"
+        android:layout_marginTop="20dp"
+        android:text="@string/registrar"
+        android:background="@drawable/btn_border_radius"
+        app:backgroundTint = "#FAAB00" />
+
+
+</RelativeLayout>
