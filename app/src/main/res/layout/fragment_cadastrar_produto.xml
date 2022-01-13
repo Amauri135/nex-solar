@@ -13,135 +13,145 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginTop="10dp"
+            android:id="@+id/formulario_cadastro_produto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="vertical"
             android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/background_formularios"
-            android:id="@+id/formulario_cadastro_produto">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:background="@drawable/background_linhas_formularios">
+                android:background="@drawable/background_linhas_formularios"
+                android:orientation="horizontal"
+                android:paddingStart="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Categoria:" />
+                    android:text="Categoria:"
+                    android:textColor="@color/white" />
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:layout_marginStart="5dp"
-                    android:textColorHint="@color/white"
+                    android:hint="Toque para digitar..."
                     android:textAlignment="textEnd"
-                    android:hint="Toque para digitar..." />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/background_linhas_formularios"
-                android:layout_marginTop="5dp">
+                android:orientation="horizontal"
+                android:paddingStart="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Tipo:" />
+                    android:text="Tipo:"
+                    android:textColor="@color/white" />
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
                     android:layout_marginStart="5dp"
+                    android:hint="Toque para digitar..."
                     android:textAlignment="textEnd"
-                    android:hint="Toque para digitar..." />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/background_linhas_formularios"
-                android:layout_marginTop="5dp">
+                android:orientation="horizontal"
+                android:paddingStart="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Descrição:" />
+                    android:text="Descrição:"
+                    android:textColor="@color/white" />
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
                     android:layout_marginStart="5dp"
+                    android:hint="Toque para digitar..."
                     android:textAlignment="textEnd"
-                    android:hint="Toque para digitar..." />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/background_linhas_formularios"
-                android:layout_marginTop="5dp">
+                android:orientation="horizontal"
+                android:paddingStart="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Unidade de medida:" />
+                    android:text="Unidade de medida:"
+                    android:textColor="@color/white" />
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
                     android:layout_marginStart="5dp"
+                    android:hint="Toque para digitar..."
                     android:textAlignment="textEnd"
-                    android:hint="Toque para digitar..." />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/background_linhas_formularios"
-                android:layout_marginTop="5dp">
+                android:orientation="horizontal"
+                android:paddingStart="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Quantidade:" />
+                    android:text="Quantidade:"
+                    android:textColor="@color/white" />
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:layout_marginStart="5dp"
+                    android:hint="@string/toque_para_digitar"
                     android:inputType="number"
-                    android:layout_marginStart="5dp"
                     android:textAlignment="textEnd"
-                    android:hint="@string/toque_para_digitar" />
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
             </LinearLayout>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_border_radius"
+                android:gravity="center"
                 android:text="@string/salvar"
-                app:backgroundTint="@color/botoes" />
+                app:backgroundTint="@color/azul" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
