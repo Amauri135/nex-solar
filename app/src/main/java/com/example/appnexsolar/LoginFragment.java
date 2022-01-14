@@ -86,7 +86,7 @@ public class LoginFragment extends Fragment {
                             if(dataSnapshot.exists()){
                                 Usuario usuario = dataSnapshot.getValue(Usuario.class);
                                 Toast.makeText(getContext(), "Olá, " + usuario.getNome() + "!", Toast.LENGTH_SHORT).show();
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashboardFragment()).addToBackStack("fromLoginToDash").commit();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashFragment()).addToBackStack("fromLoginToDash").commit();
                             } else {
                                 Toast.makeText(getContext(), "Usuário não encontrado no banco de dados! Peça ajuda ao suporte.", Toast.LENGTH_LONG).show();
                             }

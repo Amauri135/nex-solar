@@ -1,20 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <item
-        android:icon="@drawable/ic_retirar"
-        android:id="@+id/itemRetirada"
-        android:title="@string/retirar" />
+    android:layout_height="match_parent"
+    tools:showIn="navigation_view">
 
-    <item
-        android:icon="@drawable/ic_devolver"
-        android:id="@+id/itemDevolucao"
-        android:title="@string/devolver" />
+    <group
+        android:id="@+id/group_dashboard"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboar"
+            android:icon="@drawable/ic_baseline_speed_24"
+            android:title="@string/dashboard" />
+    </group>
 
-    <item
-        android:id="@+id/itemVerFotos"
-        android:title ="Ver Fotos" />
+    <item android:title="@string/estoque" android:id="@+id/aaaa">
+        <menu>
+            <group
+                android:id="@+id/group_estoque"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_retirar"
+                    android:icon="@drawable/ic_retirar"
+                    android:title="@string/retirar" />
+
+                <item
+                    android:id="@+id/menu_devolver"
+                    android:icon="@drawable/ic_devolver"
+                    android:title="@string/devolver" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Gerenciamento" android:id="@+id/bbbbbb">
+        <menu>
+            <group
+                android:id="@+id/group_gerenciamento"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_listar"
+                    android:icon="@drawable/ic_baseline_list_24"
+                    android:title="@string/listar_produtos" />
+
+                <item
+                    android:id="@+id/menu_novo"
+                    android:icon="@drawable/ic_baseline_add_circle_outline_24"
+                    android:title="@string/novo_produto" />
+
+                <item
+                    android:id="@+id/menu_liberar"
+                    android:icon="@drawable/ic_liberar_acessos"
+                    android:title="@string/liberar_acessos" />
+            </group>
+        </menu>
+
+    </item>
+
+
 </menu>

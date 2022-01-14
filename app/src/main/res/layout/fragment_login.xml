@@ -6,9 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".LoginFragment"
     android:gravity="center"
-    android:backgroundTint="@color/black"
-    android:backgroundTintMode="add"
-    android:background="@drawable/background_formularios" >
+    android:background="@color/cinza_escuro">
 
     <ImageView
         android:id="@+id/logo"
@@ -58,7 +56,7 @@
         android:layout_marginTop="20pt"
         android:background="@drawable/btn_border_radius"
         android:text="@string/login"
-        app:backgroundTint="@color/botoes" />
+        app:backgroundTint="@color/azul" />
 
     <Button
         android:id="@+id/buttonCriarConta"
@@ -70,7 +68,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_border_radius"
         android:text="@string/criar_conta"
-        app:backgroundTint="@color/botoes" />
+        app:backgroundTint="@color/azul" />
 
     <TextView
         android:id="@+id/textViewEsqueciASenha"

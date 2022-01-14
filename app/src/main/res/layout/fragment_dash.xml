@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cinza_escuro"
+    tools:context=".DashFragment">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/cinza_escuro"
+            android:id="@+id/imgBtnMenu"
+            android:src="@drawable/ic_baseline_menu_24" />
+
+    </Toolbar>
+
+    <com.google.android.material.navigation.NavigationView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/cinza_escuro"
+        app:itemTextColor="@color/hints"
+        app:itemIconTint="@color/hints"
+        app:menu="@menu/menu_acoes_produto" />
+</RelativeLayout>
