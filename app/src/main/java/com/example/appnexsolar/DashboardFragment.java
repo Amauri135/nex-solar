@@ -35,20 +35,20 @@ public class DashboardFragment extends Fragment {
         btnVerEstoque = binding.imgBtnVerEstoque;
         btnUltimasAcoes = binding.imgBtnUltimasAcoes;
 
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new CadastrarProdutoFragment())
-                        .addToBackStack("fromDashToCadastrarProduto")
-                        .commit();
-            }
-        });
+//        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, new NovoProdutoFragment())
+//                        .addToBackStack("fromDashToCadastrarProduto")
+//                        .commit();
+//            }
+//        });
 
         btnVerEstoque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new VerEstoqueFragment()).addToBackStack("fromDashToEstoque").commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ListarProdutosFragment()).addToBackStack("fromDashToEstoque").commit();
             }
         });
 

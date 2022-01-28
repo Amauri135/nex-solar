@@ -3,19 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cinza_escuro"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
     tools:context=".DashFragment">
 
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        android:background="@color/cinza_escuro"
         android:layout_height="wrap_content">
 
         <ImageButton
+            android:id="@+id/imgBtnMenu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@color/cinza_escuro"
-            android:id="@+id/imgBtnMenu"
             android:src="@drawable/ic_baseline_menu_24" />
 
     </Toolbar>
@@ -25,7 +27,14 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/cinza_escuro"
-        app:itemTextColor="@color/hints"
         app:itemIconTint="@color/hints"
-        app:menu="@menu/menu_acoes_produto" />
+        app:itemTextColor="@color/hints"
+        app:menu="@menu/nav_menu" />
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:backgroundTint="@color/black" />
 </RelativeLayout>

@@ -49,10 +49,10 @@ public class CriarContaFragment extends Fragment {
 
         View root = binding.getRoot();
 
-        final EditText editTextCriarNome = binding.editTextCriarNome;
-        final EditText editTextCriarUsername = binding.editTextCriarUsername;
-        final EditText editTextCriarSenha = binding.editTextCriarSenha;
-        final EditText editTextConfirmarCriarSenha = binding.editTextConfirmarCriarSenha;
+        final EditText editTextCriarNome = binding.editTextCriarNome.getEditText();
+        final EditText editTextCriarUsername = binding.editTextCriarUsername.getEditText();
+        final EditText editTextCriarSenha = binding.editTextCriarSenha.getEditText();
+        final EditText editTextConfirmarCriarSenha = binding.editTextConfirmarCriarSenha.getEditText();
         final CheckBox checkBoxConfimarSenha = binding.checkboxConfirmarSenha;
         final Button buttonRegistrarConta = binding.buttonRegistrarConta;
         final Spinner spinnerFiliais = binding.spinnerFiliais;

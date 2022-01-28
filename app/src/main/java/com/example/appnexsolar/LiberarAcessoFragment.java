@@ -9,16 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.appnexsolar.databinding.FragmentCadastrarProdutoBinding;
-
-public class CadastrarProdutoFragment extends Fragment {
-    private FragmentCadastrarProdutoBinding binding;
-
+public class LiberarAcessoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentCadastrarProdutoBinding.inflate(inflater, container, false);
-
-        return binding.getRoot();
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

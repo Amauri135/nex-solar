@@ -36,8 +36,8 @@ public class LoginFragment extends Fragment {
 
         View root = binding.getRoot();
 
-        final EditText editTextUsername = binding.editTextUsername;
-        final EditText editTextSenha = binding.editTextSenha;
+        final EditText editTextUsername = binding.editTextUsername.getEditText();
+        final EditText editTextSenha = binding.editTextSenha.getEditText();
         final Button buttonIniciarSessao = binding.buttonIniciarSessao;
         final Button buttonCriarConta = binding.buttonCriarConta;
         final TextView textViewEsqueciASenha = binding.textViewEsqueciASenha;
@@ -50,7 +50,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new CriarContaFragment()).addToBackStack("fromInicialToCriarConta").commit();
+                transaction.replace(R.id.fragment_container, new CriarContaFragment(), "criarConta").addToBackStack(null).commit();
             }
         });
 
@@ -86,7 +86,7 @@ public class LoginFragment extends Fragment {
                             if(dataSnapshot.exists()){
                                 Usuario usuario = dataSnapshot.getValue(Usuario.class);
                                 Toast.makeText(getContext(), "Olá, " + usuario.getNome() + "!", Toast.LENGTH_SHORT).show();
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashFragment()).addToBackStack("fromLoginToDash").commit();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashFragment(usuario)).addToBackStack("fromLoginToDash").commit();
                             } else {
                                 Toast.makeText(getContext(), "Usuário não encontrado no banco de dados! Peça ajuda ao suporte.", Toast.LENGTH_LONG).show();
                             }

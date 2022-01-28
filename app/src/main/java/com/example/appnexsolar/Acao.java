@@ -2,6 +2,8 @@ package com.example.appnexsolar;
 
 import com.google.firebase.database.PropertyName;
 
+import java.util.HashMap;
+
 public class Acao {
 
     @PropertyName("data")
@@ -22,19 +24,31 @@ public class Acao {
     @PropertyName("tipo")
     private String tipo;
 
-    @PropertyName("quantidade")
-    private Long quantidade;
+    @PropertyName("quantidade_devolvida")
+    private Long quantidadeDevolvida;
+
+    @PropertyName("quantidade_retirada")
+    private Long quantidadeRetirada;
+
+    @PropertyName("status")
+    private String status;
+
+    @PropertyName("devolucoes")
+    private HashMap<String,Object> devolucoes;
 
     public Acao() {}
 
-    public Acao(String data, String hora, String idProduto, String observacao, String realizadaPor, String tipo, Long quantidade) {
+    public Acao(String data, String hora, String idProduto, String observacao, String realizadaPor, String tipo, Long quantidadeDevolvida, Long quantidadeRetirada, String status, HashMap<String,Object> devolucoes) {
         this.data = data;
         this.hora = hora;
         this.idProduto = idProduto;
         this.observacao = observacao;
         this.realizadaPor = realizadaPor;
         this.tipo = tipo;
-        this.quantidade = quantidade;
+        this.quantidadeDevolvida = quantidadeDevolvida;
+        this.quantidadeRetirada = quantidadeRetirada;
+        this.status = status;
+        this.devolucoes = devolucoes;
     }
 
     @PropertyName("data")
@@ -91,12 +105,30 @@ public class Acao {
         this.tipo = tipo;
     }
 
-    @PropertyName("quantidade")
-    public Long getQuantidade() {
-        return quantidade;
+    @PropertyName("quantidade_devolvida")
+    public Long getQuantidadeDevolvida() {
+        return quantidadeDevolvida;
     }
 
-    public void setQuantidade(Long quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantidadeDevolvida(Long quantidadeDevolvida) {
+        this.quantidadeDevolvida = quantidadeDevolvida;
+    }
+
+    @PropertyName("quantidade_retirada")
+    public Long getQuantidadeRetirada() {
+        return quantidadeRetirada;
+    }
+
+    public void setQuantidadeRetirada(Long quantidadeRetirada) {
+        this.quantidadeRetirada = quantidadeRetirada;
+    }
+
+    @PropertyName("status")
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

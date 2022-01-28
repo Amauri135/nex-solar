@@ -1,7 +1,7 @@
 package com.example.appnexsolar;
 
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -37,12 +37,17 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             this.finish();
-        } else if(getSupportFragmentManager().getBackStackEntryCount() == 1 ) {
-            Toast.makeText(this, "Até mais!", Toast.LENGTH_SHORT).show();
-            FirebaseAuth.getInstance().signOut();
-            getSupportFragmentManager().popBackStack();
         } else {
-            getSupportFragmentManager().popBackStack();
+            View nav_view = findViewById(R.id.navigation_view);
+
+            if(nav_view != null && nav_view.getVisibility() == View.VISIBLE){
+                nav_view.setVisibility(View.GONE);
+            } else if(getSupportFragmentManager().getBackStackEntryCount() == 1 ) {
+                FirebaseAuth.getInstance().signOut();
+                getSupportFragmentManager().popBackStack();
+            } else {
+                getSupportFragmentManager().popBackStack();
+            }
         }
     }
 }

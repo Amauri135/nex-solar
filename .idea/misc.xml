@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/amaur/.gradle/caches/transforms-3/9b55d8e26b93d89e39247ba75ce39810/transformed/appcompat-1.3.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.2" />
         <entry key="..\:/Users/amaur/.gradle/caches/transforms-3/ccd6c517801f56e7200472775579e27c/transformed/appcompat-1.3.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.1" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/background_dashboard.xml" value="0.2203125" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/background_dashboard_card.xml" value="0.2203125" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/background_formularios.xml" value="1.296875" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/background_linhas_formularios.xml" value="0.875" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/btn_border_radius.xml" value="0.2203125" />
+        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/divider.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/gradient.xml" value="0.2203125" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/ic_alterar.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.2203125" />
@@ -24,10 +26,12 @@
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/ic_liberar_acessos.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/ic_outline_storage_24.xml" value="0.2203125" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/ic_outline_storage_48.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/ic_package_variant_closed.xml" value="0.5200501253132832" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/ic_retirar.xml" value="0.2203125" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/ic_ultimas_acoes.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/icones_dash/mipmap-anydpi-v26/ic_logo.xml" value="0.659375" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/side_nav_bar.xml" value="1.296875" />
+        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/drawable/test.xml" value="0.31640625" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.13119143239625167" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout-w936dp/activity_login.xml" value="0.153125" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/action_bar_fotos.xml" value="0.13854166666666667" />
@@ -38,9 +42,10 @@
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/content_dash.xml" value="0.2" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/foto_produto.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_blank.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_cadastrar_produto.xml" value="0.9" />
-        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_criar_conta.xml" value="0.22" />
-        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_dash.xml" value="0.25" />
+        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_cadastrar_produto.xml" value="0.22" />
+        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_criar_conta.xml" value="0.25" />
+        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_dash.xml" value="0.2" />
+        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_dash_content.xml" value="0.25" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_dash_um_list.xml" value="0.2" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_dashboard.xml" value="0.2" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/fragment_dashboard2.xml" value="0.2" />
@@ -54,8 +59,9 @@
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/item_produto_sem_foto.xml" value="0.22" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/layout_foto_produto.xml" value="0.2" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/layout_informar_quantidade.xml" value="0.1046875" />
+        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_ultimas_acoes.xml" value="0.25" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/list_item.xml" value="0.15081521739130435" />
-        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/list_item_spinner.xml" value="0.11614583333333334" />
+        <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/list_item_spinner.xml" value="0.22" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/nav_header_dash.xml" value="1.25" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/layout/tool_bar.xml" value="0.11614583333333334" />
         <entry key="..\:/Users/amaur/AndroidStudioProjects/AppNexSolar/app/src/main/res/menu-200x50/test_menu.xml" value="0.11875" />

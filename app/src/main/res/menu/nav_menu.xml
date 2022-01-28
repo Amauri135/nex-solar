@@ -9,7 +9,7 @@
         android:id="@+id/group_dashboard"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_dashboar"
+            android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_baseline_speed_24"
             android:title="@string/dashboard" />
     </group>
@@ -20,12 +20,12 @@
                 android:id="@+id/group_estoque"
                 android:checkableBehavior="single">
                 <item
-                    android:id="@+id/menu_retirar"
+                    android:id="@+id/nav_retirar"
                     android:icon="@drawable/ic_retirar"
                     android:title="@string/retirar" />
 
                 <item
-                    android:id="@+id/menu_devolver"
+                    android:id="@+id/nav_devolver"
                     android:icon="@drawable/ic_devolver"
                     android:title="@string/devolver" />
             </group>
@@ -38,17 +38,17 @@
                 android:id="@+id/group_gerenciamento"
                 android:checkableBehavior="single">
                 <item
-                    android:id="@+id/menu_listar"
+                    android:id="@+id/nav_listar"
                     android:icon="@drawable/ic_baseline_list_24"
                     android:title="@string/listar_produtos" />
 
                 <item
-                    android:id="@+id/menu_novo"
+                    android:id="@+id/nav_novo"
                     android:icon="@drawable/ic_baseline_add_circle_outline_24"
                     android:title="@string/novo_produto" />
 
                 <item
-                    android:id="@+id/menu_liberar"
+                    android:id="@+id/nav_liberar"
                     android:icon="@drawable/ic_liberar_acessos"
                     android:title="@string/liberar_acessos" />
             </group>

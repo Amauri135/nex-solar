@@ -16,34 +16,52 @@
         android:scaleType="centerCrop"
         app:srcCompat="@mipmap/ic_logo_foreground" />
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/logo"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/hints"
+        app:hintTextColor="@color/hints"
+        app:counterTextColor="@color/hints"
+        android:textColorHint="@color/hints"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20pt"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="20pt"
-        android:autofillHints="emailAddress"
-        android:hint="@string/e_mail"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/white"
-        android:textColorHint="@color/hints" />
+        android:layout_marginEnd="20pt" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
+            android:hint="@string/e_mail"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextSenha"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/hints"
+        app:hintTextColor="@color/hints"
+        android:textColorHint="@color/hints"
+        app:counterTextColor="@color/hints"
         android:hint="@string/senha"
         android:layout_marginTop="10dp"
         android:layout_alignStart="@id/editTextUsername"
         android:layout_alignEnd="@id/editTextUsername"
-        android:autofillHints="password"
-        android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textColorHint="@color/hints"
-        android:layout_below="@id/editTextUsername"/>
+        android:layout_below="@id/editTextUsername">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/buttonIniciarSessao"

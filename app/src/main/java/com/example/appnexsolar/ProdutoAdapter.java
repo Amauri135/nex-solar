@@ -58,7 +58,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoViewHolder> {
         holder.textViewQtdInicial.setText(produtos.get(position).getQuantidadeInicial().toString());
 
         PopupMenu popupMenu = new PopupMenu(context, viewMenuAcoes);
-        popupMenu.inflate(R.menu.menu_acoes_produto);
+        popupMenu.inflate(R.menu.nav_menu);
 
         popupMenu.setForceShowIcon(true);
         popupMenu.setOnMenuItemClickListener(menuItem -> {
@@ -80,7 +80,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoViewHolder> {
                     builderRetirada.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            new ProdutoRepositorio(context).retirarProduto(produto, numberPickerRetirada.getValue(), usuario);
+                            new ProdutoRepositorio(context, usuario.getIdFilial()).retirarProduto(produto, numberPickerRetirada.getValue(), usuario);
                         }
                     }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                         @Override
@@ -109,7 +109,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoViewHolder> {
                     builderDevolucao.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            new ProdutoRepositorio(context).devolverProduto(produto, numberPickerDevolucao.getValue(), usuario);
+                            new ProdutoRepositorio(context, usuario.getIdFilial()).devolverProduto(produto, numberPickerDevolucao.getValue(), usuario);
                         }
                     }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                         @Override

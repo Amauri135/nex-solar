@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
 <!--        <item name="android:itemBackground">@color/cinza_escuro</item>-->
 <!--        <item name="itemTextColor">@color/hints</item>-->
+        <item name="boxStrokeColor">@color/white</item>
     </style>
 
     <style name="Theme.AppNexSolar.NoActionBar">

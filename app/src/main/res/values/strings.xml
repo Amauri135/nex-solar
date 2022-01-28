@@ -7,8 +7,8 @@
     <string name="esqueci_minha_senha">Esqueci minha senha</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="confirmar_senha">Confirmar senha</string>
-    <string name="nome_completo">Nome completo</string>
+    <string name="confirmar_senha">Confirmar Senha</string>
+    <string name="nome_completo">Nome Completo</string>
     <string name="registrar">Registrar</string>
     <string name="foto_do_produto">Foto do produto</string>
     <string name="menu_de_acoes_do_produto">Menu de ações do produto</string>
@@ -20,7 +20,7 @@
     <string name="salvar">Salvar</string>
     <string name="toque_para_digitar">Toque para digitar…</string>
     <string name="cadastrar">Cadastrar</string>
-    <string name="ultimas_acoes">Últimas\nAções</string>
+    <string name="ultimas_acoes">Últimas Ações</string>
     <string name="liberar_acessos">Liberar Acessos</string>
     <string name="login">Login</string>
     <string name="title_activity_dash">DashActivity</string>
@@ -29,4 +29,7 @@
     <string name="estoque">Estoque</string>
     <string name="listar_produtos">Listar Produtos</string>
     <string name="novo_produto">Novo Produto</string>
+    <string name="produto">Produto</string>
+    <string name="retiradas_pendentes">Retiradas Pendentes</string>
+    <string name="total">Total</string>
 </resources>

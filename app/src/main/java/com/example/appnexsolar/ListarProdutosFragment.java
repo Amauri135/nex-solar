@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerEstoqueFragment extends Fragment {
+public class ListarProdutosFragment extends Fragment {
 
     private FragmentEstoqueBinding binding;
     private RecyclerView recyclerView;
