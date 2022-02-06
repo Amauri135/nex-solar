@@ -1,5 +1,7 @@
 package com.example.appnexsolar;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.PropertyName;
 
@@ -16,9 +18,6 @@ public class Filial {
     @PropertyName("data")
     private String data;
 
-    @PropertyName("hora")
-    private String hora;
-
     @PropertyName("localizacao")
     private HashMap<String,String> localizacao;
 
@@ -29,10 +28,9 @@ public class Filial {
 
     }
 
-    public Filial(String cnpj, String data, String hora, HashMap<String, String> localizacao, String responsavel_filial) {
+    public Filial(String cnpj, String data, HashMap<String, String> localizacao, String responsavel_filial) {
         this.cnpj = cnpj;
         this.data = data;
-        this.hora = hora;
         this.localizacao = localizacao;
         this.responsavelFilial = responsavel_filial;
     }
@@ -53,15 +51,6 @@ public class Filial {
 
     public void setData(String data) {
         this.data = data;
-    }
-
-    @PropertyName("hora")
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
     }
 
     @PropertyName("localizacao")
@@ -90,6 +79,7 @@ public class Filial {
         this.id = id;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return localizacao.get("cidade") + ", " + localizacao.get("estado") + " - " + localizacao.get("pais");

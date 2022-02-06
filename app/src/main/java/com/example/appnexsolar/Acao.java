@@ -34,11 +34,17 @@ public class Acao {
     private String status;
 
     @PropertyName("devolucoes")
-    private HashMap<String,Object> devolucoes;
+    private HashMap<String,Acao> devolucoes;
+
+    @PropertyName("id_usuario")
+    private String idUsuario;
+
+    @PropertyName("id_obra")
+    private String idObra;
 
     public Acao() {}
 
-    public Acao(String data, String hora, String idProduto, String observacao, String realizadaPor, String tipo, Long quantidadeDevolvida, Long quantidadeRetirada, String status, HashMap<String,Object> devolucoes) {
+    public Acao(String data, String hora, String idProduto, String observacao, String realizadaPor, String tipo, Long quantidadeDevolvida, Long quantidadeRetirada, String status, HashMap<String, Acao> devolucoes, String idUsuario, String idObra) {
         this.data = data;
         this.hora = hora;
         this.idProduto = idProduto;
@@ -49,6 +55,8 @@ public class Acao {
         this.quantidadeRetirada = quantidadeRetirada;
         this.status = status;
         this.devolucoes = devolucoes;
+        this.idUsuario = idUsuario;
+        this.idObra = idObra;
     }
 
     @PropertyName("data")
@@ -130,5 +138,32 @@ public class Acao {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @PropertyName("devolucoes")
+    public HashMap<String, Acao> getDevolucoes() {
+        return devolucoes;
+    }
+
+    public void setDevolucoes(HashMap<String, Acao> devolucoes) {
+        this.devolucoes = devolucoes;
+    }
+
+    @PropertyName("id_usuario")
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    @PropertyName("id_obra")
+    public String getIdObra() {
+        return idObra;
+    }
+
+    public void setIdObra(String idObra) {
+        this.idObra = idObra;
     }
 }

@@ -14,8 +14,8 @@ public class Produto {
     @PropertyName("hora")
     private String hora;
 
-    @PropertyName("cadastrado_por")
-    private String cadastradoPor;
+    @PropertyName("id_usuario")
+    private String idUsuario;
 
     @PropertyName("tipo")
     private String tipo;
@@ -39,10 +39,10 @@ public class Produto {
 
     }
 
-    public Produto(String data, String hora, String cadastradoPor, String tipo, String descricao, Long quantidadeInicial, Long quantidadeAtual, String categoria, String unidadeMedida) {
+    public Produto(String data, String hora, String idUsuario, String tipo, String descricao, Long quantidadeInicial, Long quantidadeAtual, String categoria, String unidadeMedida) {
         this.data = data;
         this.hora = hora;
-        this.cadastradoPor = cadastradoPor;
+        this.idUsuario = idUsuario;
         this.tipo = tipo;
         this.descricao = descricao;
         this.quantidadeInicial = quantidadeInicial;
@@ -69,13 +69,13 @@ public class Produto {
         this.hora = hora;
     }
 
-    @PropertyName("cadastrado_por")
-    public String getCadastradoPor() {
-        return cadastradoPor;
+    @PropertyName("id_usuario")
+    public String getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setCadastradoPor(String cadastradoPor) {
-        this.cadastradoPor = cadastradoPor;
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @PropertyName("tipo")
