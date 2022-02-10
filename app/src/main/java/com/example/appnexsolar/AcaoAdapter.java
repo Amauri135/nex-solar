@@ -37,7 +37,12 @@ public class AcaoAdapter extends RecyclerView.Adapter<AcaoViewHolder> {
         holder.tipoAcao.setText(acoes.get(position).getTipo());
 
         Long quantidade = "retirada".equalsIgnoreCase(acoes.get(position).getTipo()) ? acoes.get(position).getQuantidadeRetirada() : acoes.get(position).getQuantidadeDevolvida();
-        holder.quantidade.setText(quantidade.toString());
+
+        if(quantidade == null){
+            quantidade = acoes.get(position).getQuantidade();
+        }
+
+        holder.quantidade.setText(quantidade != null ? quantidade.toString() : "");
 
         holder.data.setText(acoes.get(position).getData());
         holder.hora.setText(acoes.get(position).getHora());

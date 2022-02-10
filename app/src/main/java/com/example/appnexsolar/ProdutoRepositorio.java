@@ -2,6 +2,7 @@ package com.example.appnexsolar;
 
 import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -49,5 +50,11 @@ public class ProdutoRepositorio {
                 nomeProdutoView.setText(nomeProduto);
             }
         });
+    }
+
+    public void salvarProduto(Produto produto) {
+        produtoReference.push().setValue(produto)
+                .addOnSuccessListener(command -> Toast.makeText(context, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(command -> Toast.makeText(context, "Ocorreu uma falha ao salvar o produto.", Toast.LENGTH_SHORT).show());
     }
 }

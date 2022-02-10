@@ -42,6 +42,9 @@ public class Acao {
     @PropertyName("id_obra")
     private String idObra;
 
+    @PropertyName("quantidade")
+    private Long quantidade;
+
     public Acao() {}
 
     public Acao(String data, String hora, String idProduto, String observacao, String realizadaPor, String tipo, Long quantidadeDevolvida, Long quantidadeRetirada, String status, HashMap<String, Acao> devolucoes, String idUsuario, String idObra) {
@@ -165,5 +168,14 @@ public class Acao {
 
     public void setIdObra(String idObra) {
         this.idObra = idObra;
+    }
+
+    @PropertyName("quantidade")
+    public Long getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Long quantidade) {
+        this.quantidade = quantidade;
     }
 }

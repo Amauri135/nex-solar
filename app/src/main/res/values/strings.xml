@@ -32,4 +32,6 @@
     <string name="produto">Produto</string>
     <string name="retiradas_pendentes">Retiradas Pendentes</string>
     <string name="total">Total</string>
+    <string name="descricao">Descrição</string>
+    <string name="categoria">Categoria</string>
 </resources>

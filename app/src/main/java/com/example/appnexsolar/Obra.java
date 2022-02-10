@@ -10,8 +10,8 @@ public class Obra {
     @PropertyName("data")
     private String data;
 
-    @PropertyName("email")
-    private String email;
+//    @PropertyName("email")
+//    private String email;
 
     @PropertyName("endereco_obra")
     private String enderecoObra;
@@ -28,23 +28,23 @@ public class Obra {
     @PropertyName("responsavel")
     private String responsavel;
 
-    @PropertyName("telefone")
-    private String telefone;
+//    @PropertyName("telefone")
+//    private String telefone;
 
     public Obra() {
 
     }
 
-    public Obra(String cidadeObra, String data, String email, String enderecoObra, String hora, String idUsuario, String nomeObra, String responsavel, String telefone) {
+    public Obra(String cidadeObra, String data, /*String email,*/ String enderecoObra, String hora, String idUsuario, String nomeObra, String responsavel/*, String telefone*/) {
         this.cidadeObra = cidadeObra;
         this.data = data;
-        this.email = email;
+//        this.email = email;
         this.enderecoObra = enderecoObra;
         this.hora = hora;
         this.idUsuario = idUsuario;
         this.nomeObra = nomeObra;
         this.responsavel = responsavel;
-        this.telefone = telefone;
+//        this.telefone = telefone;
     }
 
     public String getCidadeObra() {
@@ -63,13 +63,13 @@ public class Obra {
         this.data = data;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 
     public String getEnderecoObra() {
         return enderecoObra;
@@ -111,11 +111,11 @@ public class Obra {
         this.responsavel = responsavel;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+//    public String getTelefone() {
+//        return telefone;
+//    }
+//
+//    public void setTelefone(String telefone) {
+//        this.telefone = telefone;
+//    }
 }

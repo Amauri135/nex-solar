@@ -7,149 +7,214 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".NovoProdutoFragment" >
 
-        <LinearLayout
-            android:id="@+id/formulario_cadastro_produto"
+    <LinearLayout
+        android:id="@+id/formulario_cadastro_produto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/background_formularios"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/descricao"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="10dp"
+            android:textColorHint="@color/hints"
+            app:boxStrokeColor="@color/hints"
+            app:counterTextColor="@color/hints"
+            app:hintTextColor="@color/hints">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descrição *"
+                android:inputType="text"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/categoria"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/background_formularios"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_marginEnd="10dp"
+            android:textColorHint="@color/hints"
+            app:boxStrokeColor="@color/hints"
+            app:counterTextColor="@color/hints"
+            app:hintTextColor="@color/hints">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_linhas_formularios"
-                android:orientation="horizontal"
-                android:paddingEnd="5dp"
-                android:paddingStart="5dp">
+                android:hint="Categoria *"
+                android:inputType="text"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Categoria:"
-                    android:textColor="@color/white" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/unidadeMedida"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:textColorHint="@color/hints"
+            app:boxStrokeColor="@color/hints"
+            app:counterTextColor="@color/hints"
+            app:hintTextColor="@color/hints">
 
-                <EditText
-                    android:scrollHorizontally="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:hint="Toque para digitar..."
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/hints" />
-            </LinearLayout>
-
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/background_linhas_formularios"
-                android:orientation="horizontal"
-                android:paddingStart="5dp">
+                android:hint="Unidade de Medida *"
+                android:inputType="text"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tipo:"
-                    android:textColor="@color/white" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/quantidade"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:textColorHint="@color/hints"
+            app:boxStrokeColor="@color/hints"
+            app:counterTextColor="@color/hints"
+            app:hintTextColor="@color/hints">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:hint="Toque para digitar..."
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/hints" />
-            </LinearLayout>
-
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/background_linhas_formularios"
-                android:orientation="horizontal"
-                android:paddingStart="5dp">
+                android:hint="Quantidade *"
+                android:inputType="number"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Descrição:"
-                    android:textColor="@color/white" />
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="@drawable/background_linhas_formularios"-->
+        <!--                android:orientation="horizontal"-->
+        <!--                android:paddingEnd="5dp"-->
+        <!--                android:paddingStart="5dp">-->
 
-                <EditText
-                    android:lines="2"
-                    android:maxLines="2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:hint="Toque para digitar..."
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/hints" />
-            </LinearLayout>
+        <!--                <TextView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="Categoria:"-->
+        <!--                    android:textColor="@color/white" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/background_linhas_formularios"
-                android:orientation="horizontal"
-                android:paddingStart="5dp">
+        <!--                <EditText-->
+        <!--                    android:scrollHorizontally="true"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="5dp"-->
+        <!--                    android:hint="Toque para digitar..."-->
+        <!--                    android:textAlignment="textEnd"-->
+        <!--                    android:textColor="@color/white"-->
+        <!--                    android:textColorHint="@color/hints" />-->
+        <!--            </LinearLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Unidade de medida:"
-                    android:textColor="@color/white" />
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="5dp"-->
+        <!--                android:background="@drawable/background_linhas_formularios"-->
+        <!--                android:orientation="horizontal"-->
+        <!--                android:paddingStart="5dp">-->
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:hint="Toque para digitar..."
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/hints" />
-            </LinearLayout>
+        <!--                <TextView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="Descrição:"-->
+        <!--                    android:textColor="@color/white" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/background_linhas_formularios"
-                android:orientation="horizontal"
-                android:paddingStart="5dp">
+        <!--                <EditText-->
+        <!--                    android:lines="2"-->
+        <!--                    android:maxLines="2"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="5dp"-->
+        <!--                    android:hint="Toque para digitar..."-->
+        <!--                    android:textAlignment="textEnd"-->
+        <!--                    android:textColor="@color/white"-->
+        <!--                    android:textColorHint="@color/hints" />-->
+        <!--            </LinearLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Quantidade:"
-                    android:textColor="@color/white" />
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="5dp"-->
+        <!--                android:background="@drawable/background_linhas_formularios"-->
+        <!--                android:orientation="horizontal"-->
+        <!--                android:paddingStart="5dp">-->
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:hint="@string/toque_para_digitar"
-                    android:inputType="number"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/hints" />
-            </LinearLayout>
+        <!--                <TextView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="Unidade de medida:"-->
+        <!--                    android:textColor="@color/white" />-->
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_border_radius"
-                android:gravity="center"
-                android:text="@string/salvar"
-                app:backgroundTint="@color/azul" />
-        </LinearLayout>
+        <!--                <EditText-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="5dp"-->
+        <!--                    android:hint="Toque para digitar..."-->
+        <!--                    android:textAlignment="textEnd"-->
+        <!--                    android:textColor="@color/white"-->
+        <!--                    android:textColorHint="@color/hints" />-->
+        <!--            </LinearLayout>-->
+
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="5dp"-->
+        <!--                android:background="@drawable/background_linhas_formularios"-->
+        <!--                android:orientation="horizontal"-->
+        <!--                android:paddingStart="5dp">-->
+
+        <!--                <TextView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="Quantidade:"-->
+        <!--                    android:textColor="@color/white" />-->
+
+        <!--                <EditText-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="5dp"-->
+        <!--                    android:hint="@string/toque_para_digitar"-->
+        <!--                    android:inputType="number"-->
+        <!--                    android:textAlignment="textEnd"-->
+        <!--                    android:textColor="@color/white"-->
+        <!--                    android:textColorHint="@color/hints" />-->
+        <!--            </LinearLayout>-->
+
+        <Button
+            android:id="@+id/salvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_border_radius"
+            android:gravity="center"
+            android:text="@string/salvar"
+            app:backgroundTint="@color/azul" />
+    </LinearLayout>
 </RelativeLayout>
