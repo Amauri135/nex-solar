@@ -42,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
             if(nav_view != null && nav_view.getVisibility() == View.VISIBLE){
                 nav_view.setVisibility(View.GONE);
-            } else if(getSupportFragmentManager().getBackStackEntryCount() == 1 ) {
+            } else if(getSupportFragmentManager().getBackStackEntryCount() == 2 ) {
                 FirebaseAuth.getInstance().signOut();
+                getSupportFragmentManager().popBackStack();
                 getSupportFragmentManager().popBackStack();
             } else {
                 getSupportFragmentManager().popBackStack();
