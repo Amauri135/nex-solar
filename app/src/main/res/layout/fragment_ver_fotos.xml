@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".VerFotosFragment"
+    tools:context="com.app.nextoque.controller.VerFotosFragment"
     android:background="@color/black">
 
     <androidx.recyclerview.widget.RecyclerView

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LoginFragment"
+    tools:context="com.app.nextoque.controller.LoginFragment"
     android:gravity="center"
     android:background="@color/cinza_escuro">
 

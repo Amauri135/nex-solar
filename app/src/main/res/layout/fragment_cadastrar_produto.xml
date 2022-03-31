@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".NovoProdutoFragment" >
+    tools:context="com.app.nextoque.controller.NovoProdutoFragment" >
 
     <LinearLayout
         android:id="@+id/formulario_cadastro_produto"
@@ -15,6 +15,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/background_formularios"
+        android:gravity="center_vertical"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -211,7 +212,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/btn_border_radius"
             android:gravity="center"
             android:text="@string/salvar"
