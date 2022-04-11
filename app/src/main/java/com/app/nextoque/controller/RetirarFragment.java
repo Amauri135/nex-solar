@@ -28,9 +28,9 @@ public class RetirarFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentRetirarProdutoBinding.inflate(inflater, container, false);
 
-        new ProdutoRepositorio(getContext(), usuario.getIdFilial()).buscarProdutos(binding.spinnerProdutos);
+        new ProdutoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarProdutos(binding.spinnerProdutos);
 
-        new ObraRepositorio(getContext(), usuario.getIdFilial()).buscarObras(binding.spinnerObras);
+        new ObraRepositorio(getContext(), usuario).buscarObras(binding.spinnerObras);
 
         binding.spinnerProdutos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -56,10 +56,9 @@ public class RetirarFragment extends Fragment {
         binding.salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new ProdutoRepositorio(getContext(), usuario.getIdFilial()).retirarProduto(
+                new ProdutoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).retirarProduto(
                         (Produto) binding.spinnerProdutos.getSelectedItem(),
                         Integer.parseInt(binding.quantidade.getEditText().getText().toString()),
-                        usuario,
                         (Obra) binding.spinnerObras.getSelectedItem(),
                         binding.observacao.getEditText().getText().toString()
                 );

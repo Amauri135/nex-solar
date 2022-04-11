@@ -6,24 +6,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.nextoque.R;
+import com.app.nextoque.controller.DevolverProdutoFragment;
 import com.app.nextoque.entity.Acao;
+import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.model.ObraRepositorio;
 import com.app.nextoque.model.ProdutoRepositorio;
-import com.app.nextoque.R;
 
 import java.util.List;
 
 public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradasViewHolder> {
     private List<Acao> minhasRetiradas;
     private Context context;
-    private String idFilialUsuario;
+    private final Usuario usuario;
+    private FragmentManager fragmentManager;
 
-    public MinhasRetiradasAdapter(List<Acao> minhasRetiradas, Context context, String idFilialUsuario){
+    public MinhasRetiradasAdapter(List<Acao> minhasRetiradas, Context context, Usuario usuario, FragmentManager fragmentManager){
         this.minhasRetiradas = minhasRetiradas;
         this.context = context;
-        this.idFilialUsuario = idFilialUsuario;
+        this.usuario = usuario;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -37,7 +42,7 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
     public void onBindViewHolder(@NonNull MinhasRetiradasViewHolder holder, int position) {
         Acao retirada = minhasRetiradas.get(position);
 
-        new ProdutoRepositorio(context, idFilialUsuario).buscarNomeProduto(retirada.getIdProduto(), holder.produto);
+        new ProdutoRepositorio(context, usuario, fragmentManager).buscarNomeProduto(retirada.getIdProduto(), holder.produto);
 
         Long qtRetirada =  retirada.getQuantidadeRetirada();
         Long qtDevolvida = retirada.getQuantidadeDevolvida();
@@ -45,7 +50,7 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
         holder.qtRetirada.setText(holder.qtRetirada.getText().toString().concat(": " + qtRetirada != null ? qtRetirada.toString() : ""));
         holder.qtDevolvida.setText(qtDevolvida != null ? qtDevolvida.toString() : "");
 
-        new ObraRepositorio(context, idFilialUsuario).buscarNomeObra(retirada.getIdObra(), holder.obra);
+        new ObraRepositorio(context, usuario).buscarNomeObra(retirada.getIdObra(), holder.obra);
 
         holder.data.setText(retirada.getData());
         holder.hora.setText(retirada.getHora());
@@ -60,10 +65,33 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
             holder.status.setText("Devolver");
             holder.status.setTextColor(context.getResources().getColor(R.color.amarelo));
             holder.status.setBackgroundResource(R.drawable.border_background_amarelo);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Devolver o produto da retirada que ele clicou
+                    //precisa, pelo menos, do id da retirada e do id do produto
+
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.frame_layout, new DevolverProdutoFragment(usuario, retirada))
+                            .addToBackStack("fromMinhasRetiradasToDevolverProduto")
+                            .commit();
+                }
+            });
         } else if("devolvido".equals(retirada.getStatus())){
             holder.status.setText("Devolvido");
             holder.status.setTextColor(context.getResources().getColor(R.color.azul));
             holder.status.setBackgroundResource(R.drawable.border_background_azul);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.frame_layout, new DevolverProdutoFragment(usuario, retirada))
+                            .addToBackStack("fromMinhasRetiradasToDevolverProduto")
+                            .commit();
+                }
+            });
         } else if("usado_em_obra".equals(retirada.getStatus())){
             holder.status.setText("Usado em obra");
             holder.status.setTextColor(context.getResources().getColor(R.color.vermelho));

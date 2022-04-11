@@ -84,7 +84,7 @@ public class NovoProdutoFragment extends Fragment {
             produto.setData(dateFormat.format(data));
             produto.setHora(timeFormat.format(data));
 
-            new ProdutoRepositorio(getContext(), usuario.getIdFilial()).salvarProduto(produto);
+            new ProdutoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(produto);
         }
 
 

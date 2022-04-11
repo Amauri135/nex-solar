@@ -4,12 +4,16 @@ import android.content.Context;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.nextoque.entity.Acao;
+import com.app.nextoque.R;
 import com.app.nextoque.adapter.AcaoAdapter;
 import com.app.nextoque.adapter.MinhasRetiradasAdapter;
+import com.app.nextoque.controller.DashContentFragment;
+import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Produto;
+import com.app.nextoque.entity.Usuario;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -24,15 +28,17 @@ public class AcaoRepositorio {
 
     private Context context;
     private DatabaseReference acaoReference;
-    private String idFilialUsuario;
+    private Usuario usuario;
+    private FragmentManager fragmentManager;
 
-    public AcaoRepositorio(Context context, String idFilialUsuario) {
+    public AcaoRepositorio(Context context, Usuario usuario, FragmentManager fragmentManager) {
         this.context = context;
-        this.idFilialUsuario = idFilialUsuario;
-        this.acaoReference = FirebaseDatabase.getInstance().getReference("filiais/" + idFilialUsuario + "/estoque/acoes");
+        this.acaoReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/estoque/acoes");
+        this.usuario = usuario;
+        this.fragmentManager = fragmentManager;
     }
 
-    public void registrarRetirada(Produto produto, String nomeUsuario, Integer quantidade, String idUsuario, String idObra, String obs) {
+    public void registrarRetirada(Produto produto, Integer quantidade, String idObra, String obs) {
         Acao retirada = new Acao();
 
         Date dataAtual = new Date();
@@ -46,14 +52,21 @@ public class AcaoRepositorio {
         retirada.setData(data);
         retirada.setHora(hora);
         retirada.setIdProduto(produto.getId());
-        retirada.setRealizadaPor(nomeUsuario);
         retirada.setObservacao(obs);
-        retirada.setTipo("Retirada");
+        retirada.setTipo("retirada");
         retirada.setQuantidadeRetirada(quantidade.longValue());
-        retirada.setIdUsuario(idUsuario);
+        retirada.setIdUsuario(usuario.getId());
         retirada.setIdObra(idObra);
+        retirada.setStatus("pendente");
 
-        registrarAcao(retirada);
+        acaoReference.push().setValue(retirada).addOnSuccessListener(command -> {
+            Toast.makeText(context, "Retirada cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
+
+            fragmentManager.beginTransaction()
+                    .replace(R.id.frame_layout, new DashContentFragment(usuario))
+                    .addToBackStack("fromRetirarToDashContent")
+                    .commit();
+        });
     }
 
     public void registrarDevolucao(Produto produto, String nomeUsuario, Integer quantidade) {
@@ -70,9 +83,8 @@ public class AcaoRepositorio {
         devolucao.setData(data);
         devolucao.setHora(hora);
         devolucao.setIdProduto(produto.getId());
-        devolucao.setRealizadaPor(nomeUsuario);
         devolucao.setObservacao("");
-        devolucao.setTipo("Devolução");
+        devolucao.setTipo("devolucao");
         devolucao.setQuantidadeDevolvida(quantidade.longValue());
 
         registrarAcao(devolucao);
@@ -112,7 +124,7 @@ public class AcaoRepositorio {
 
     public void buscarUltimasAcoes(RecyclerView ultimasAcoesView){
         List<Acao> ultimasAcoesList = new ArrayList<>();
-        AcaoAdapter acaoAdapter = new AcaoAdapter(ultimasAcoesList, context, idFilialUsuario);
+        AcaoAdapter acaoAdapter = new AcaoAdapter(ultimasAcoesList, context, usuario, fragmentManager);
 
         ultimasAcoesView.setAdapter(acaoAdapter);
 
@@ -138,9 +150,9 @@ public class AcaoRepositorio {
                 });
     }
 
-    public void buscarMinhasRetiradas(RecyclerView minhasRetiradasView, String idUsuario) {
+    public void buscarMinhasRetiradas(RecyclerView minhasRetiradasView) {
         List<Acao> minhasRetiradas = new ArrayList<>();
-        MinhasRetiradasAdapter minhasRetiradasAdapter = new MinhasRetiradasAdapter(minhasRetiradas, context, idFilialUsuario);
+        MinhasRetiradasAdapter minhasRetiradasAdapter = new MinhasRetiradasAdapter(minhasRetiradas, context, usuario, fragmentManager);
 
         minhasRetiradasView.setAdapter(minhasRetiradasAdapter);
 
@@ -155,7 +167,9 @@ public class AcaoRepositorio {
                             for (DataSnapshot child : dataSnapshot.getChildren()) {
                                 Acao retirada = child.getValue(Acao.class);
 
-                                if (idUsuario.equals(retirada.getIdUsuario())) {
+                                retirada.setId(child.getKey());
+
+                                if (usuario.getId().equals(retirada.getIdUsuario())) {
                                     minhasRetiradas.add(retirada);
                                     minhasRetiradasAdapter.notifyItemInserted(minhasRetiradas.size()-1);
                                 }

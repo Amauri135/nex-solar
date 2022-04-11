@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,15 +11,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.app.nextoque.entity.Usuario;
-import com.app.nextoque.model.AcaoRepositorio;
 import com.app.nextoque.R;
 import com.app.nextoque.databinding.FragmentDashContentBinding;
+import com.app.nextoque.entity.Usuario;
+import com.app.nextoque.model.AcaoRepositorio;
 
 public class DashContentFragment extends Fragment {
     private FragmentDashContentBinding binding;
     private final Usuario usuario;
-    private TextView retiradasPendentes;
 
     public DashContentFragment(Usuario usuario) {
         this.usuario = usuario;
@@ -31,9 +29,7 @@ public class DashContentFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding =  FragmentDashContentBinding.inflate(inflater, container, false);
 
-        retiradasPendentes = binding.retiradasPendentes;
-
-        new AcaoRepositorio(getContext(), usuario.getIdFilial()).buscarRetiradasPendentes(binding.retiradasPendentes);
+        new AcaoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarRetiradasPendentes(binding.retiradasPendentes);
 
         binding.listUltimasAcoes.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -42,7 +38,7 @@ public class DashContentFragment extends Fragment {
 
         binding.listUltimasAcoes.addItemDecoration(divider);
 
-        new AcaoRepositorio(getContext(), usuario.getIdFilial()).buscarUltimasAcoes(binding.listUltimasAcoes);
+        new AcaoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarUltimasAcoes(binding.listUltimasAcoes);
 
 //        binding.listUltimasAcoes.setAdapter(new ArrayAdapter<Acao>(getContext(), R.layout.layout_item_ultimas_acoes, ));
 

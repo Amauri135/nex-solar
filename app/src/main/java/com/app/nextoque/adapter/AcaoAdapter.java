@@ -6,24 +6,28 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.nextoque.entity.Acao;
-import com.app.nextoque.model.ProdutoRepositorio;
 import com.app.nextoque.R;
+import com.app.nextoque.entity.Acao;
+import com.app.nextoque.entity.Usuario;
+import com.app.nextoque.model.ProdutoRepositorio;
 
 import java.util.List;
 
 public class AcaoAdapter extends RecyclerView.Adapter<AcaoViewHolder> {
     private List<Acao> acoes;
     private Context context;
-    private String idFilialUsuario;
+    private final Usuario usuario;
+    private FragmentManager fragmentManager;
 
-    public AcaoAdapter(List<Acao> acoes, Context context, String idFilialUsuario)
+    public AcaoAdapter(List<Acao> acoes, Context context, Usuario usuario, FragmentManager fragmentManager)
     {
         this.acoes = acoes;
         this.context = context;
-        this.idFilialUsuario = idFilialUsuario;
+        this.usuario = usuario;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -35,8 +39,7 @@ public class AcaoAdapter extends RecyclerView.Adapter<AcaoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AcaoViewHolder holder, int position) {
-        new ProdutoRepositorio(context, idFilialUsuario).buscarNomeProduto(acoes.get(position).getIdProduto(), holder.produto);
-        //holder.produto.setText(acoes.get(position).getIdProduto());
+        new ProdutoRepositorio(context, usuario, fragmentManager).buscarNomeProduto(acoes.get(position).getIdProduto(), holder.produto);
 
         holder.tipoAcao.setText(acoes.get(position).getTipo());
 

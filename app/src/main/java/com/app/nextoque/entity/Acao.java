@@ -1,10 +1,14 @@
 package com.app.nextoque.entity;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.PropertyName;
 
 import java.util.HashMap;
 
 public class Acao {
+
+    @Exclude
+    private String id;
 
     @PropertyName("data")
     private String data;
@@ -17,9 +21,6 @@ public class Acao {
 
     @PropertyName("obs")
     private String observacao;
-
-    @PropertyName("realizada_por")
-    private String realizadaPor;
 
     @PropertyName("tipo")
     private String tipo;
@@ -47,12 +48,11 @@ public class Acao {
 
     public Acao() {}
 
-    public Acao(String data, String hora, String idProduto, String observacao, String realizadaPor, String tipo, Long quantidadeDevolvida, Long quantidadeRetirada, String status, HashMap<String, Acao> devolucoes, String idUsuario, String idObra) {
+    public Acao(String data, String hora, String idProduto, String observacao, String tipo, Long quantidadeDevolvida, Long quantidadeRetirada, String status, HashMap<String, Acao> devolucoes, String idUsuario, String idObra) {
         this.data = data;
         this.hora = hora;
         this.idProduto = idProduto;
         this.observacao = observacao;
-        this.realizadaPor = realizadaPor;
         this.tipo = tipo;
         this.quantidadeDevolvida = quantidadeDevolvida;
         this.quantidadeRetirada = quantidadeRetirada;
@@ -96,15 +96,6 @@ public class Acao {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
-    }
-
-    @PropertyName("realizada_por")
-    public String getRealizadaPor() {
-        return realizadaPor;
-    }
-
-    public void setRealizadaPor(String realizadaPor) {
-        this.realizadaPor = realizadaPor;
     }
 
     @PropertyName("tipo")
@@ -177,5 +168,13 @@ public class Acao {
 
     public void setQuantidade(Long quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

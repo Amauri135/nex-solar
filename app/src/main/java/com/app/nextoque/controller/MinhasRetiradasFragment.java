@@ -31,11 +31,12 @@ public class MinhasRetiradasFragment extends Fragment {
         binding = FragmentMinhasRetiradasBinding.inflate(inflater, container, false);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         binding.listMinhasRetiradas.setLayoutManager(layoutManager);
 
-        new AcaoRepositorio(getContext(), usuario.getIdFilial()).buscarMinhasRetiradas(binding.listMinhasRetiradas, usuario.getId());
+        new AcaoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarMinhasRetiradas(binding.listMinhasRetiradas);
 
         return binding.getRoot();
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context="com.app.nextoque.controller.NovoProdutoFragment">
+    tools:context="com.app.nextoque.controller.DevolverProdutoFragment">
 
     <LinearLayout
         android:id="@+id/formulario_retirada_produto"
@@ -16,11 +16,11 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/background_formularios"
-        android:gravity="center_vertical"
         android:orientation="vertical"
         android:padding="10dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/prod_devolver_produto"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,49 +41,8 @@
                 android:text="Produto *"
                 android:textColor="@color/hints" />
 
-            <Spinner
-                android:id="@+id/spinnerProdutos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:theme="@style/Platform.MaterialComponents"
-                tools:listitem="@layout/list_item_spinner" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:textColorHint="@color/hints"
-            app:boxStrokeColor="@color/hints"
-            app:counterTextColor="@color/hints"
-            app:hintTextColor="@color/hints">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:enabled="false"
-                android:text="Obra *"
-                android:textColor="@color/hints" />
-
-            <Spinner
-                android:id="@+id/spinnerObras"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:theme="@style/Platform.MaterialComponents"
-                tools:listitem="@layout/list_item_spinner" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/quantidade"
@@ -123,20 +82,26 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Observação *"
+                android:layout_height="100dp"
+                android:hint="Observação"
+                android:gravity="top"
+                android:maxLength="100"
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/salvar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_border_radius"
-            android:gravity="center"
-            android:text="@string/salvar"
-            app:backgroundTint="@color/azul" />
     </LinearLayout>
-</ScrollView>
+
+    <Button
+        android:id="@+id/salvar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/btn_border_radius"
+        android:gravity="center"
+        android:text="@string/salvar"
+        app:backgroundTint="@color/azul" />
+</androidx.constraintlayout.widget.ConstraintLayout>

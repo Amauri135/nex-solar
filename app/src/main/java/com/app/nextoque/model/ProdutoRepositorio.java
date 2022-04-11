@@ -6,6 +6,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.app.nextoque.entity.Obra;
 import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
@@ -22,13 +24,16 @@ public class ProdutoRepositorio {
 
     private Context context;
     private DatabaseReference produtoReference;
+    private FragmentManager fragmentManager;
+    private Usuario usuario;
 
-    public ProdutoRepositorio(Context context, String idFilialUsuario) {
+    public ProdutoRepositorio(Context context, Usuario usuario, FragmentManager fragmentManager) {
         this.context = context;
-        this.produtoReference = FirebaseDatabase.getInstance().getReference("filiais/" + idFilialUsuario + "/estoque/produtos/");
+        this.produtoReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/estoque/produtos/");
+        this.fragmentManager = fragmentManager;
     }
 
-    public void retirarProduto(Produto produto, Integer quantidade, Usuario usuario, Obra obra, String obs) {
+    public void retirarProduto(Produto produto, Integer quantidade, Obra obra, String obs) {
         String produtoPath = "filiais/" + usuario.getIdFilial() + "/estoque/produtos/" + produto.getId();
         DatabaseReference produtoReference = FirebaseDatabase.getInstance().getReference(produtoPath);
 
@@ -36,7 +41,7 @@ public class ProdutoRepositorio {
 
         produtoReference.setValue(produto);
 
-        new AcaoRepositorio(context, usuario.getIdFilial()).registrarRetirada(produto, usuario.getNome(), quantidade, usuario.getId(), obra.getId(), obs);
+        new AcaoRepositorio(context, usuario, fragmentManager).registrarRetirada(produto, quantidade, obra.getId(), obs);
     }
 
     public void devolverProduto(Produto produto, Integer quantidade, Usuario usuario) {
@@ -47,7 +52,7 @@ public class ProdutoRepositorio {
 
         produtoReference.setValue(produto);
 
-        new AcaoRepositorio(context, usuario.getIdFilial()).registrarDevolucao(produto, usuario.getNome(), quantidade);
+        new AcaoRepositorio(context, usuario, fragmentManager).registrarDevolucao(produto, usuario.getNome(), quantidade);
     }
 
     public void buscarNomeProduto(String idProduto, TextView nomeProdutoView){

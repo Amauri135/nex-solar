@@ -12,7 +12,6 @@
         android:id="@+id/list_minhas_retiradas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         tools:listitem="@layout/layout_item_minhas_retiradas" />
 
 </RelativeLayout>

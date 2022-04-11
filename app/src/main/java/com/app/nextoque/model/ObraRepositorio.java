@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.app.nextoque.entity.Obra;
 import com.app.nextoque.R;
+import com.app.nextoque.entity.Usuario;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -19,12 +20,12 @@ import java.util.List;
 public class ObraRepositorio {
     private Context context;
     private DatabaseReference obraReference;
-    private String idFilialUsuario;
+    private Usuario usuario;
 
-    public ObraRepositorio(Context context,String idFilialUsuario) {
+    public ObraRepositorio(Context context, Usuario usuario) {
         this.context = context;
-        this.idFilialUsuario = idFilialUsuario;
-        this.obraReference = FirebaseDatabase.getInstance().getReference("filiais/" + idFilialUsuario + "/obras");
+        this.usuario = usuario;
+        this.obraReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/obras");
     }
     
     public void buscarObras(Spinner spinnerObras) {
