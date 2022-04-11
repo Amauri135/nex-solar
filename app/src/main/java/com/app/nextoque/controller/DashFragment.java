@@ -80,7 +80,7 @@ public class DashFragment extends Fragment {
         navigationView.getMenu().findItem(R.id.nav_devolver).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                replaceFragment(new DevolverFragment(navigationView, usuario));
+                replaceFragment(new MinhasRetiradasFragment(navigationView, usuario));
                 return false;
             }
         });

@@ -49,7 +49,30 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
 
         holder.data.setText(retirada.getData());
         holder.hora.setText(retirada.getHora());
+
         holder.obs.setText(retirada.getObservacao());
+
+        if(retirada.getObservacao() == null || retirada.getObservacao().trim().isEmpty()){
+            holder.obs.setText("-");
+        }
+
+        if("pendente".equals(retirada.getStatus())) {
+            holder.status.setText("Devolver");
+            holder.status.setTextColor(context.getResources().getColor(R.color.amarelo));
+            holder.status.setBackgroundResource(R.drawable.border_background_amarelo);
+        } else if("devolvido".equals(retirada.getStatus())){
+            holder.status.setText("Devolvido");
+            holder.status.setTextColor(context.getResources().getColor(R.color.azul));
+            holder.status.setBackgroundResource(R.drawable.border_background_azul);
+        } else if("usado_em_obra".equals(retirada.getStatus())){
+            holder.status.setText("Usado em obra");
+            holder.status.setTextColor(context.getResources().getColor(R.color.vermelho));
+            holder.status.setBackgroundResource(R.drawable.border_background_vermelho);
+        } else {
+            holder.status.setText("Inconsistente");
+            holder.status.setTextColor(context.getResources().getColor(R.color.vermelho));
+            holder.status.setBackgroundResource(R.drawable.border_background_vermelho);
+        }
     }
 
     @Override

@@ -16,6 +16,7 @@ public class MinhasRetiradasViewHolder extends RecyclerView.ViewHolder {
     TextView data;
     TextView hora;
     TextView obs;
+    TextView status;
 
     public MinhasRetiradasViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -27,5 +28,6 @@ public class MinhasRetiradasViewHolder extends RecyclerView.ViewHolder {
         data = itemView.findViewById(R.id.data_minhas_retiradas);
         hora = itemView.findViewById(R.id.hora_minhas_retiradas);
         obs = itemView.findViewById(R.id.obs_minhas_retiradas);
+        status = itemView.findViewById(R.id.status_minha_retirada);
     }
 }
