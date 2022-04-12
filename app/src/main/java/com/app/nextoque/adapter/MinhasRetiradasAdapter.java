@@ -69,9 +69,6 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Devolver o produto da retirada que ele clicou
-                    //precisa, pelo menos, do id da retirada e do id do produto
-
                     fragmentManager.beginTransaction()
                             .replace(R.id.frame_layout, new DevolverProdutoFragment(usuario, retirada))
                             .addToBackStack("fromMinhasRetiradasToDevolverProduto")
@@ -82,16 +79,6 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
             holder.status.setText("Devolvido");
             holder.status.setTextColor(context.getResources().getColor(R.color.azul));
             holder.status.setBackgroundResource(R.drawable.border_background_azul);
-
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.frame_layout, new DevolverProdutoFragment(usuario, retirada))
-                            .addToBackStack("fromMinhasRetiradasToDevolverProduto")
-                            .commit();
-                }
-            });
         } else if("usado_em_obra".equals(retirada.getStatus())){
             holder.status.setText("Usado em obra");
             holder.status.setTextColor(context.getResources().getColor(R.color.vermelho));

@@ -107,9 +107,6 @@ public class AcaoRepositorio {
                                 Toast.makeText(context, "Devolução cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
 
                                 fragmentManager.popBackStack();
-//                                        .replace(R.id.frame_layout, new MinhasRetiradasFragment(navigationView, usuario))
-//                                        .addToBackStack("fromDevolverProdutoToMinhasRetiradas")
-//                                        .commit();
                             }
                         });
             }
@@ -194,15 +191,21 @@ public class AcaoRepositorio {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
+                            List<Acao> retiradasList = new ArrayList<>();
+
                             for (DataSnapshot child : dataSnapshot.getChildren()) {
                                 Acao retirada = child.getValue(Acao.class);
 
                                 retirada.setId(child.getKey());
 
                                 if (usuario.getId().equals(retirada.getIdUsuario())) {
-                                    minhasRetiradas.add(retirada);
-                                    minhasRetiradasAdapter.notifyItemInserted(minhasRetiradas.size()-1);
+                                    retiradasList.add(retirada);
                                 }
+                            }
+
+                            for(int i = 0; i < retiradasList.size(); i++){
+                                minhasRetiradas.add(retiradasList.get(retiradasList.size()-i-1));
+                                minhasRetiradasAdapter.notifyItemInserted(i);
                             }
                         }
                     }
