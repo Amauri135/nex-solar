@@ -23,10 +23,10 @@ import java.util.List;
 
 public class ProdutoRepositorio {
 
-    private Context context;
+    private final Context context;
     private DatabaseReference produtoReference;
-    private FragmentManager fragmentManager;
-    private Usuario usuario;
+    private final FragmentManager fragmentManager;
+    private final Usuario usuario;
 
     public ProdutoRepositorio(Context context, Usuario usuario, FragmentManager fragmentManager) {
         this.context = context;

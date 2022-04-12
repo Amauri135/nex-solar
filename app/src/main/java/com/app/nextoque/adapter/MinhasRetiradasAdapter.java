@@ -15,6 +15,7 @@ import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.model.ObraRepositorio;
 import com.app.nextoque.model.ProdutoRepositorio;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
@@ -23,12 +24,14 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
     private Context context;
     private final Usuario usuario;
     private final FragmentManager fragmentManager;
+    private final NavigationView navigationView;
 
-    public MinhasRetiradasAdapter(List<Acao> minhasRetiradas, Context context, Usuario usuario, FragmentManager fragmentManager){
+    public MinhasRetiradasAdapter(List<Acao> minhasRetiradas, Context context, Usuario usuario, FragmentManager fragmentManager, NavigationView navigationView){
         this.minhasRetiradas = minhasRetiradas;
         this.context = context;
         this.usuario = usuario;
         this.fragmentManager = fragmentManager;
+        this.navigationView = navigationView;
     }
 
     @NonNull
@@ -61,6 +64,15 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
             holder.obs.setText("-");
         }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(navigationView.getVisibility() == View.VISIBLE){
+                    navigationView.setVisibility(View.GONE);
+                }
+            }
+        });
+
         if("pendente".equals(retirada.getStatus())) {
             holder.status.setText("Devolver");
             holder.status.setTextColor(context.getResources().getColor(R.color.amarelo));
@@ -69,10 +81,14 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.frame_layout, new DevolverProdutoFragment(usuario, retirada))
-                            .addToBackStack("fromMinhasRetiradasToDevolverProduto")
-                            .commit();
+                    if(navigationView.getVisibility() == View.VISIBLE){
+                        navigationView.setVisibility(View.GONE);
+                    } else {
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.frame_layout, new DevolverProdutoFragment(usuario, retirada, navigationView))
+                                .addToBackStack("fromMinhasRetiradasToDevolverProduto")
+                                .commit();
+                    }
                 }
             });
         } else if("devolvido".equals(retirada.getStatus())){

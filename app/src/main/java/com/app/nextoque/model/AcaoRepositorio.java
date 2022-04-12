@@ -27,10 +27,10 @@ import java.util.List;
 
 public class AcaoRepositorio {
 
-    private Context context;
+    private final Context context;
     private DatabaseReference acaoReference;
-    private Usuario usuario;
-    private FragmentManager fragmentManager;
+    private final Usuario usuario;
+    private final FragmentManager fragmentManager;
 
     public AcaoRepositorio(Context context, Usuario usuario, FragmentManager fragmentManager) {
         this.context = context;
@@ -112,15 +112,6 @@ public class AcaoRepositorio {
             }
         });
 
-
-
-        registrarAcao(devolucao);
-    }
-
-    private void registrarAcao(Acao acao) {
-        acaoReference.push().setValue(acao).addOnSuccessListener(command -> {
-            Toast.makeText(context, acao.getTipo() + " cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
-        });
     }
 
     public void buscarRetiradasPendentes(TextView retiradasPendentesView) {
@@ -179,7 +170,7 @@ public class AcaoRepositorio {
 
     public void buscarMinhasRetiradas(RecyclerView minhasRetiradasView, NavigationView navigationView) {
         List<Acao> minhasRetiradas = new ArrayList<>();
-        MinhasRetiradasAdapter minhasRetiradasAdapter = new MinhasRetiradasAdapter(minhasRetiradas, context, usuario, fragmentManager);
+        MinhasRetiradasAdapter minhasRetiradasAdapter = new MinhasRetiradasAdapter(minhasRetiradas, context, usuario, fragmentManager, navigationView);
 
         minhasRetiradasView.setAdapter(minhasRetiradasAdapter);
 
