@@ -32,6 +32,24 @@ public class DevolverProdutoFragment extends Fragment {
         new ProdutoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager())
                 .buscarNomeProduto(retirada.getIdProduto(), binding.prodDevolverProduto.getEditText());
 
+        binding.salvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer quantidade =
+                        binding.quantidade.getEditText() != null ?
+                                Integer.parseInt(binding.quantidade.getEditText().getText().toString()) :
+                                null;
+
+                String obs =
+                        binding.observacao.getEditText() != null ?
+                                binding.observacao.getEditText().getText().toString() :
+                                null;
+
+                new ProdutoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager())
+                        .devolverProduto(quantidade, obs, retirada);
+            }
+        });
+
         return binding.getRoot();
     }
 }

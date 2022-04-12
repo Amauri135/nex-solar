@@ -36,7 +36,7 @@ public class MinhasRetiradasFragment extends Fragment {
 
         binding.listMinhasRetiradas.setLayoutManager(layoutManager);
 
-        new AcaoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarMinhasRetiradas(binding.listMinhasRetiradas);
+        new AcaoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarMinhasRetiradas(binding.listMinhasRetiradas, navigationView);
 
         return binding.getRoot();
     }

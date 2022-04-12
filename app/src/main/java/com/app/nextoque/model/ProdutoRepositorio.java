@@ -8,10 +8,11 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 
+import com.app.nextoque.R;
+import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Obra;
 import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
-import com.app.nextoque.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,7 @@ public class ProdutoRepositorio {
 
     public ProdutoRepositorio(Context context, Usuario usuario, FragmentManager fragmentManager) {
         this.context = context;
+        this.usuario = usuario;
         this.produtoReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/estoque/produtos/");
         this.fragmentManager = fragmentManager;
     }
@@ -44,15 +46,35 @@ public class ProdutoRepositorio {
         new AcaoRepositorio(context, usuario, fragmentManager).registrarRetirada(produto, quantidade, obra.getId(), obs);
     }
 
-    public void devolverProduto(Produto produto, Integer quantidade, Usuario usuario) {
-        String produtoPath = "filiais/" + usuario.getIdFilial() + "/estoque/produtos/" + produto.getId();
-        DatabaseReference produtoReference = FirebaseDatabase.getInstance().getReference(produtoPath);
+    public void devolverProduto(Integer quantidade, String obs, Acao retirada) {
+        if (quantidade == null || quantidade == 0L) {
+            Toast.makeText(context, "A quantidade é obrigatória e deve ser maior do que 0 (zero)!", Toast.LENGTH_SHORT).show();
+        } else if(quantidade > retirada.getQuantidadeRetirada() - retirada.getQuantidadeDevolvida()) {
+            Toast.makeText(context, "A quantidade inserida é maior do que a permitida para devolução desse produto!", Toast.LENGTH_SHORT).show();
+        } else {
+            String produtoPath = "filiais/" + usuario.getIdFilial() + "/estoque/produtos/" + retirada.getIdProduto();
+            DatabaseReference produtoReference = FirebaseDatabase.getInstance().getReference(produtoPath);
 
-        produto.setQuantidadeAtual(produto.getQuantidadeAtual()+quantidade);
+            produtoReference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                @Override
+                public void onSuccess(DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()){
+                        Produto produto = dataSnapshot.getValue(Produto.class);
 
-        produtoReference.setValue(produto);
+                        produto.setId(dataSnapshot.getKey());
 
-        new AcaoRepositorio(context, usuario, fragmentManager).registrarDevolucao(produto, usuario.getNome(), quantidade);
+                        produto.setQuantidadeAtual(produto.getQuantidadeAtual()+quantidade);
+
+                        produtoReference.setValue(produto).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                new AcaoRepositorio(context, usuario, fragmentManager).registrarDevolucao(produto, quantidade, obs, retirada);
+                            }
+                        });
+                    }
+                }
+            });
+        }
     }
 
     public void buscarNomeProduto(String idProduto, TextView nomeProdutoView){

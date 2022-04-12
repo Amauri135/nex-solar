@@ -15,6 +15,7 @@ import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -55,6 +56,7 @@ public class AcaoRepositorio {
         retirada.setObservacao(obs);
         retirada.setTipo("retirada");
         retirada.setQuantidadeRetirada(quantidade.longValue());
+        retirada.setQuantidadeDevolvida(0L);
         retirada.setIdUsuario(usuario.getId());
         retirada.setIdObra(idObra);
         retirada.setStatus("pendente");
@@ -69,7 +71,7 @@ public class AcaoRepositorio {
         });
     }
 
-    public void registrarDevolucao(Produto produto, String nomeUsuario, Integer quantidade) {
+    public void registrarDevolucao(Produto produto, Integer quantidade, String obs, Acao retirada) {
         Acao devolucao = new Acao();
 
         Date dataAtual = new Date();
@@ -83,9 +85,37 @@ public class AcaoRepositorio {
         devolucao.setData(data);
         devolucao.setHora(hora);
         devolucao.setIdProduto(produto.getId());
-        devolucao.setObservacao("");
+        devolucao.setIdUsuario(usuario.getId());
+        devolucao.setObservacao(obs);
         devolucao.setTipo("devolucao");
         devolucao.setQuantidadeDevolvida(quantidade.longValue());
+
+        DatabaseReference retiradaReference = acaoReference.child(retirada.getId());
+
+        retiradaReference.child("devolucoes").push().setValue(devolucao).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                retiradaReference.child("quantidade_devolvida")
+                        .setValue(retirada.getQuantidadeDevolvida()+quantidade.longValue())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                if(retirada.getQuantidadeRetirada().equals(retirada.getQuantidadeDevolvida()+quantidade.longValue())){
+                                    retiradaReference.child("status").setValue("devolvido");
+                                }
+
+                                Toast.makeText(context, "Devolução cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
+
+                                fragmentManager.popBackStack();
+//                                        .replace(R.id.frame_layout, new MinhasRetiradasFragment(navigationView, usuario))
+//                                        .addToBackStack("fromDevolverProdutoToMinhasRetiradas")
+//                                        .commit();
+                            }
+                        });
+            }
+        });
+
+
 
         registrarAcao(devolucao);
     }
@@ -150,7 +180,7 @@ public class AcaoRepositorio {
                 });
     }
 
-    public void buscarMinhasRetiradas(RecyclerView minhasRetiradasView) {
+    public void buscarMinhasRetiradas(RecyclerView minhasRetiradasView, NavigationView navigationView) {
         List<Acao> minhasRetiradas = new ArrayList<>();
         MinhasRetiradasAdapter minhasRetiradasAdapter = new MinhasRetiradasAdapter(minhasRetiradas, context, usuario, fragmentManager);
 

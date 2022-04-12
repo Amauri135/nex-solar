@@ -22,7 +22,7 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
     private List<Acao> minhasRetiradas;
     private Context context;
     private final Usuario usuario;
-    private FragmentManager fragmentManager;
+    private final FragmentManager fragmentManager;
 
     public MinhasRetiradasAdapter(List<Acao> minhasRetiradas, Context context, Usuario usuario, FragmentManager fragmentManager){
         this.minhasRetiradas = minhasRetiradas;
@@ -47,7 +47,7 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
         Long qtRetirada =  retirada.getQuantidadeRetirada();
         Long qtDevolvida = retirada.getQuantidadeDevolvida();
 
-        holder.qtRetirada.setText(holder.qtRetirada.getText().toString().concat(": " + qtRetirada != null ? qtRetirada.toString() : ""));
+        holder.qtRetirada.setText(qtRetirada != null ? qtRetirada.toString() : "");
         holder.qtDevolvida.setText(qtDevolvida != null ? qtDevolvida.toString() : "");
 
         new ObraRepositorio(context, usuario).buscarNomeObra(retirada.getIdObra(), holder.obra);
