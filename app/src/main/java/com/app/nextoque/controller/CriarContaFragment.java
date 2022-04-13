@@ -18,11 +18,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.app.nextoque.entity.Filial;
-import com.app.nextoque.enums.TipoUsuarioEnum;
-import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.R;
 import com.app.nextoque.databinding.FragmentCriarContaBinding;
+import com.app.nextoque.entity.Filial;
+import com.app.nextoque.entity.Usuario;
+import com.app.nextoque.enums.TipoUsuarioEnum;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class CriarContaFragment extends Fragment {
 
@@ -111,7 +112,6 @@ public class CriarContaFragment extends Fragment {
                 }
             }
 
-
             @Override
             public void afterTextChanged(Editable s) {
                 if(s.toString().equals(editTextCriarSenha.getText().toString())){
@@ -157,8 +157,8 @@ public class CriarContaFragment extends Fragment {
                     usuario.setNome(textNome);
                     usuario.setEmail(textEmail);
                     usuario.setIdFilial(filial.getId());
-                    usuario.setTipoRequisicao(tipoUsuario.toString());
-                    usuario.setTipoAtual(TipoUsuarioEnum.NOVO.toString());
+                    usuario.setTipoRequisicao(tipoUsuario.toString().toLowerCase(Locale.ROOT));
+                    usuario.setTipoAtual(TipoUsuarioEnum.NOVO.toString().toLowerCase(Locale.ROOT));
 
                     DatabaseReference usuarioReference = FirebaseDatabase.getInstance().getReference("usuarios");
 

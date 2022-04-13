@@ -13,6 +13,7 @@ import com.app.nextoque.R;
 import com.app.nextoque.controller.DevolverProdutoFragment;
 import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Usuario;
+import com.app.nextoque.enums.StatusRetiradaEnum;
 import com.app.nextoque.model.ObraBO;
 import com.app.nextoque.model.ProdutoBO;
 import com.google.android.material.navigation.NavigationView;
@@ -73,8 +74,8 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
             }
         });
 
-        if("pendente".equals(retirada.getStatus())) {
-            holder.status.setText("Devolver");
+        if(StatusRetiradaEnum.PENDENTE.toString().equals(retirada.getStatus())) {
+            holder.status.setText(StatusRetiradaEnum.PENDENTE.getLabel());
             holder.status.setTextColor(context.getResources().getColor(R.color.amarelo));
             holder.status.setBackgroundResource(R.drawable.border_background_amarelo);
 
@@ -91,16 +92,16 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
                     }
                 }
             });
-        } else if("devolvido".equals(retirada.getStatus())){
-            holder.status.setText("Devolvido");
+        } else if(StatusRetiradaEnum.DEVOLVIDO.toString().equals(retirada.getStatus())){
+            holder.status.setText(StatusRetiradaEnum.DEVOLVIDO.getLabel());
             holder.status.setTextColor(context.getResources().getColor(R.color.azul));
             holder.status.setBackgroundResource(R.drawable.border_background_azul);
-        } else if("usado_em_obra".equals(retirada.getStatus())){
-            holder.status.setText("Usado em obra");
+        } else if(StatusRetiradaEnum.USADO_EM_OBRA.toString().equals(retirada.getStatus())){
+            holder.status.setText(StatusRetiradaEnum.USADO_EM_OBRA.getLabel());
             holder.status.setTextColor(context.getResources().getColor(R.color.vermelho));
             holder.status.setBackgroundResource(R.drawable.border_background_vermelho);
         } else {
-            holder.status.setText("Inconsistente");
+            holder.status.setText(StatusRetiradaEnum.INCONSISTENTE.getLabel());
             holder.status.setTextColor(context.getResources().getColor(R.color.vermelho));
             holder.status.setBackgroundResource(R.drawable.border_background_vermelho);
         }

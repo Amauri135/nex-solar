@@ -1,34 +1,21 @@
 package com.app.nextoque.enums;
 
-import androidx.annotation.NonNull;
-
 public enum TipoUsuarioEnum {
-    DIRETOR {
-        @NonNull
-        @Override
-        public String toString() {
-            return "Diretor";
-        }
-    },
-    ADMINISTRADOR {
-        @NonNull
-        @Override
-        public String toString() {
-            return "Administrador";
-        }
-    },
-    COLABORADOR {
-        @NonNull
-        @Override
-        public String toString() {
-            return "Colaborador";
-        }
-    },
-    NOVO {
-        @NonNull
-        @Override
-        public String toString() {
-            return "Novo";
-        }
-    };
+
+    DIRETOR("Diretor"),
+    ADMINISTRADOR("Administrador"),
+    COLABORADOR("Colaborador"),
+    NOVO("Novo"),
+    DEV("Dev");
+
+    private String descricao;
+
+    TipoUsuarioEnum(String descricao) {
+        this.descricao = descricao;
+    }
+
+    @Override
+    public String toString() {
+        return descricao;
+    }
 }

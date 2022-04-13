@@ -14,6 +14,8 @@ import com.app.nextoque.controller.DashContentFragment;
 import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
+import com.app.nextoque.enums.StatusRetiradaEnum;
+import com.app.nextoque.enums.TipoAcaoEnum;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -54,12 +56,12 @@ public class AcaoBO {
         retirada.setHora(hora);
         retirada.setIdProduto(produto.getId());
         retirada.setObservacao(obs);
-        retirada.setTipo("retirada");
+        retirada.setTipo(TipoAcaoEnum.RETIRADA.toString());
         retirada.setQuantidadeRetirada(quantidade.longValue());
         retirada.setQuantidadeDevolvida(0L);
         retirada.setIdUsuario(usuario.getId());
         retirada.setIdObra(idObra);
-        retirada.setStatus("pendente");
+        retirada.setStatus(StatusRetiradaEnum.PENDENTE.toString());
 
         acaoReference.push().setValue(retirada).addOnSuccessListener(command -> {
             Toast.makeText(context, "Retirada cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
@@ -87,7 +89,7 @@ public class AcaoBO {
         devolucao.setIdProduto(produto.getId());
         devolucao.setIdUsuario(usuario.getId());
         devolucao.setObservacao(obs);
-        devolucao.setTipo("devolucao");
+        devolucao.setTipo(TipoAcaoEnum.DEVOLUCAO.toString());
         devolucao.setQuantidadeDevolvida(quantidade.longValue());
 
         DatabaseReference retiradaReference = acaoReference.child(retirada.getId());
@@ -101,7 +103,7 @@ public class AcaoBO {
                             @Override
                             public void onSuccess(Void unused) {
                                 if(retirada.getQuantidadeRetirada().equals(retirada.getQuantidadeDevolvida()+quantidade.longValue())){
-                                    retiradaReference.child("status").setValue("devolvido");
+                                    retiradaReference.child("status").setValue(StatusRetiradaEnum.DEVOLVIDO.toString());
                                 }
 
                                 Toast.makeText(context, "Devolução cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
@@ -119,7 +121,7 @@ public class AcaoBO {
 
         acaoReference
                 .orderByChild("tipo")
-                .equalTo("retirada")
+                .equalTo(TipoAcaoEnum.RETIRADA.toString())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override
@@ -128,7 +130,7 @@ public class AcaoBO {
                             for (DataSnapshot child : dataSnapshot.getChildren()) {
                                 Acao retirada = child.getValue(Acao.class);
 
-                                if ("pendente".equalsIgnoreCase(retirada.getStatus())) {
+                                if (StatusRetiradaEnum.PENDENTE.toString().equalsIgnoreCase(retirada.getStatus())) {
                                     retiradasPendentes.add(retirada);
                                 }
                             }
@@ -176,7 +178,7 @@ public class AcaoBO {
 
         acaoReference
                 .orderByChild("tipo")
-                .equalTo("retirada")
+                .equalTo(TipoAcaoEnum.RETIRADA.toString())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                     @Override

@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.nextoque.R;
 import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Usuario;
+import com.app.nextoque.enums.StatusRetiradaEnum;
+import com.app.nextoque.enums.TipoAcaoEnum;
 import com.app.nextoque.model.ProdutoBO;
 
 import java.util.List;
+import java.util.Locale;
 
 public class AcaoAdapter extends RecyclerView.Adapter<AcaoViewHolder> {
     private List<Acao> acoes;
@@ -41,7 +44,7 @@ public class AcaoAdapter extends RecyclerView.Adapter<AcaoViewHolder> {
     public void onBindViewHolder(@NonNull AcaoViewHolder holder, int position) {
         new ProdutoBO(context, usuario, fragmentManager).buscarNomeProduto(acoes.get(position).getIdProduto(), holder.produto);
 
-        holder.tipoAcao.setText(acoes.get(position).getTipo());
+        holder.tipoAcao.setText(TipoAcaoEnum.valueOf(acoes.get(position).getTipo().toUpperCase(Locale.ROOT)).getLabel());
 
         Long quantidade = "retirada".equalsIgnoreCase(acoes.get(position).getTipo()) ? acoes.get(position).getQuantidadeRetirada() : acoes.get(position).getQuantidadeDevolvida();
 
@@ -54,7 +57,9 @@ public class AcaoAdapter extends RecyclerView.Adapter<AcaoViewHolder> {
         holder.data.setText(acoes.get(position).getData());
         holder.hora.setText(acoes.get(position).getHora());
 
-        holder.status.setText(acoes.get(position).getStatus());
+        String status = acoes.get(position).getStatus();
+
+        holder.status.setText(StatusRetiradaEnum.valueOf(status.toUpperCase(Locale.ROOT)).getLabel());
     }
 
     @Override
