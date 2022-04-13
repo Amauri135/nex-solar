@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.app.nextoque.databinding.FragmentDevolverProdutoBinding;
 import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Usuario;
-import com.app.nextoque.model.ProdutoRepositorio;
+import com.app.nextoque.model.ProdutoBO;
 import com.google.android.material.navigation.NavigationView;
 
 public class DevolverProdutoFragment extends Fragment {
@@ -68,7 +68,7 @@ public class DevolverProdutoFragment extends Fragment {
             }
         });
 
-        new ProdutoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager())
+        new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager())
                 .buscarNomeProduto(retirada.getIdProduto(), binding.prodDevolverProduto.getEditText());
 
         binding.salvar.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +87,7 @@ public class DevolverProdutoFragment extends Fragment {
                                     binding.observacao.getEditText().getText().toString() :
                                     null;
 
-                    new ProdutoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager())
+                    new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager())
                             .devolverProduto(quantidade, obs, retirada);
                 }
             }

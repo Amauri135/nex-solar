@@ -25,14 +25,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class AcaoRepositorio {
+public class AcaoBO {
 
     private final Context context;
     private DatabaseReference acaoReference;
     private final Usuario usuario;
     private final FragmentManager fragmentManager;
 
-    public AcaoRepositorio(Context context, Usuario usuario, FragmentManager fragmentManager) {
+    public AcaoBO(Context context, Usuario usuario, FragmentManager fragmentManager) {
         this.context = context;
         this.acaoReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/estoque/acoes");
         this.usuario = usuario;

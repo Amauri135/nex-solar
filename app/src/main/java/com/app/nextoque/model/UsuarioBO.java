@@ -4,10 +4,10 @@ import com.app.nextoque.entity.Usuario;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class UsuarioRepositorio {
+public class UsuarioBO {
     private DatabaseReference usuariosReference;
 
-    public UsuarioRepositorio() {
+    public UsuarioBO() {
         super();
         usuariosReference = FirebaseDatabase.getInstance().getReference("usuarios");
     }

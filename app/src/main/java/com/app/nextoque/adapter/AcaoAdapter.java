@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.nextoque.R;
 import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Usuario;
-import com.app.nextoque.model.ProdutoRepositorio;
+import com.app.nextoque.model.ProdutoBO;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class AcaoAdapter extends RecyclerView.Adapter<AcaoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AcaoViewHolder holder, int position) {
-        new ProdutoRepositorio(context, usuario, fragmentManager).buscarNomeProduto(acoes.get(position).getIdProduto(), holder.produto);
+        new ProdutoBO(context, usuario, fragmentManager).buscarNomeProduto(acoes.get(position).getIdProduto(), holder.produto);
 
         holder.tipoAcao.setText(acoes.get(position).getTipo());
 

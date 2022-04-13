@@ -142,6 +142,10 @@ public class Produto {
 
     @Override
     public String toString() {
+        if("selecione".equals(this.id)){
+            return this.descricao;
+        }
+
         return this.descricao+" - "+this.quantidadeAtual.toString()+" "+this.unidadeMedida;
     }
 }

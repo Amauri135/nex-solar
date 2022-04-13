@@ -116,6 +116,10 @@ public class Obra {
 
     @Override
     public String toString() {
+        if("selecione".equals(this.id)){
+            return this.nomeObra;
+        }
+
         return this.nomeObra + " - " + this.enderecoObra;
     }
 }

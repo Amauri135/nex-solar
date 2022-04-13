@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
-import com.app.nextoque.model.ProdutoRepositorio;
+import com.app.nextoque.model.ProdutoBO;
 import com.app.nextoque.databinding.FragmentCadastrarProdutoBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -84,7 +84,7 @@ public class NovoProdutoFragment extends Fragment {
             produto.setData(dateFormat.format(data));
             produto.setHora(timeFormat.format(data));
 
-            new ProdutoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(produto);
+            new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(produto);
         }
 
 

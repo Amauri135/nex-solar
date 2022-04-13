@@ -13,8 +13,8 @@ import com.app.nextoque.R;
 import com.app.nextoque.controller.DevolverProdutoFragment;
 import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Usuario;
-import com.app.nextoque.model.ObraRepositorio;
-import com.app.nextoque.model.ProdutoRepositorio;
+import com.app.nextoque.model.ObraBO;
+import com.app.nextoque.model.ProdutoBO;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
     public void onBindViewHolder(@NonNull MinhasRetiradasViewHolder holder, int position) {
         Acao retirada = minhasRetiradas.get(position);
 
-        new ProdutoRepositorio(context, usuario, fragmentManager).buscarNomeProduto(retirada.getIdProduto(), holder.produto);
+        new ProdutoBO(context, usuario, fragmentManager).buscarNomeProduto(retirada.getIdProduto(), holder.produto);
 
         Long qtRetirada =  retirada.getQuantidadeRetirada();
         Long qtDevolvida = retirada.getQuantidadeDevolvida();
@@ -53,7 +53,7 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
         holder.qtRetirada.setText(qtRetirada != null ? qtRetirada.toString() : "");
         holder.qtDevolvida.setText(qtDevolvida != null ? qtDevolvida.toString() : "");
 
-        new ObraRepositorio(context, usuario).buscarNomeObra(retirada.getIdObra(), holder.obra);
+        new ObraBO(context, usuario).buscarNomeObra(retirada.getIdObra(), holder.obra);
 
         holder.data.setText(retirada.getData());
         holder.hora.setText(retirada.getHora());

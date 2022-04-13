@@ -21,14 +21,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutoRepositorio {
+public class ProdutoBO {
 
     private final Context context;
     private DatabaseReference produtoReference;
     private final FragmentManager fragmentManager;
     private final Usuario usuario;
 
-    public ProdutoRepositorio(Context context, Usuario usuario, FragmentManager fragmentManager) {
+    public ProdutoBO(Context context, Usuario usuario, FragmentManager fragmentManager) {
         this.context = context;
         this.usuario = usuario;
         this.produtoReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/estoque/produtos/");
@@ -36,14 +36,27 @@ public class ProdutoRepositorio {
     }
 
     public void retirarProduto(Produto produto, Integer quantidade, Obra obra, String obs) {
-        String produtoPath = "filiais/" + usuario.getIdFilial() + "/estoque/produtos/" + produto.getId();
-        DatabaseReference produtoReference = FirebaseDatabase.getInstance().getReference(produtoPath);
+        if(produto == null || "selecione".equals(produto.getId())) {
+            Toast.makeText(context, "Selecione um produto!", Toast.LENGTH_SHORT).show();
+        } else if(obra ==  null || "selecione".equals(obra.getId())) {
+            Toast.makeText(context, "Selecione uma obra!", Toast.LENGTH_SHORT).show();
+        } else if(quantidade == null || quantidade == 0L) {
+            Toast.makeText(context, "A quantidade é obrigatória e deve ser maior do que 0 (zero)!", Toast.LENGTH_SHORT).show();
+        } else if(quantidade > produto.getQuantidadeAtual()) {
+            Toast.makeText(context, "A quantidade inserida é maior do que a permitida para retirada desse produto!", Toast.LENGTH_SHORT).show();
+        } else {
+            String produtoPath = "filiais/" + usuario.getIdFilial() + "/estoque/produtos/" + produto.getId();
+            DatabaseReference produtoReference = FirebaseDatabase.getInstance().getReference(produtoPath);
 
-        produto.setQuantidadeAtual(produto.getQuantidadeAtual()-quantidade);
+            produto.setQuantidadeAtual(produto.getQuantidadeAtual()-quantidade);
 
-        produtoReference.setValue(produto);
-
-        new AcaoRepositorio(context, usuario, fragmentManager).registrarRetirada(produto, quantidade, obra.getId(), obs);
+            produtoReference.setValue(produto).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    new AcaoBO(context, usuario, fragmentManager).registrarRetirada(produto, quantidade, obra.getId(), obs);
+                }
+            });
+        }
     }
 
     public void devolverProduto(Integer quantidade, String obs, Acao retirada) {
@@ -68,7 +81,7 @@ public class ProdutoRepositorio {
                         produtoReference.setValue(produto).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                new AcaoRepositorio(context, usuario, fragmentManager).registrarDevolucao(produto, quantidade, obs, retirada);
+                                new AcaoBO(context, usuario, fragmentManager).registrarDevolucao(produto, quantidade, obs, retirada);
                             }
                         });
                     }
@@ -101,7 +114,12 @@ public class ProdutoRepositorio {
                 if(runnable.isSuccessful()) {
                     List<Object> listProduto = new ArrayList<>();
 
-                    listProduto.add("");
+                    Produto selecioneProduto = new Produto();
+
+                    selecioneProduto.setDescricao("Selecione o produto");
+                    selecioneProduto.setId("selecione");
+
+                    listProduto.add(selecioneProduto);
 
                     for (DataSnapshot child : runnable.getResult().getChildren()) {
                         Produto produto = child.getValue(Produto.class);

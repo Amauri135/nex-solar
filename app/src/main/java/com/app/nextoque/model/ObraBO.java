@@ -17,12 +17,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObraRepositorio {
+public class ObraBO {
     private Context context;
     private DatabaseReference obraReference;
     private Usuario usuario;
 
-    public ObraRepositorio(Context context, Usuario usuario) {
+    public ObraBO(Context context, Usuario usuario) {
         this.context = context;
         this.usuario = usuario;
         this.obraReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/obras");
@@ -34,7 +34,12 @@ public class ObraRepositorio {
                 if(runnable.isSuccessful()) {
                     List<Object> listObra = new ArrayList<>();
 
-                    listObra.add("");
+                    Obra selecioneObra = new Obra();
+
+                    selecioneObra.setNomeObra("Selecione a obra");
+                    selecioneObra.setId("selecione");
+
+                    listObra.add(selecioneObra);
 
                     for (DataSnapshot child : runnable.getResult().getChildren()) {
                         Obra obra = child.getValue(Obra.class);

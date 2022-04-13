@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.app.nextoque.R;
 import com.app.nextoque.databinding.FragmentDashContentBinding;
 import com.app.nextoque.entity.Usuario;
-import com.app.nextoque.model.AcaoRepositorio;
+import com.app.nextoque.model.AcaoBO;
 
 public class DashContentFragment extends Fragment {
     private FragmentDashContentBinding binding;
@@ -29,7 +29,7 @@ public class DashContentFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding =  FragmentDashContentBinding.inflate(inflater, container, false);
 
-        new AcaoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarRetiradasPendentes(binding.retiradasPendentes);
+        new AcaoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarRetiradasPendentes(binding.retiradasPendentes);
 
         binding.listUltimasAcoes.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -38,7 +38,7 @@ public class DashContentFragment extends Fragment {
 
         binding.listUltimasAcoes.addItemDecoration(divider);
 
-        new AcaoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarUltimasAcoes(binding.listUltimasAcoes);
+        new AcaoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarUltimasAcoes(binding.listUltimasAcoes);
 
         return binding.getRoot();
     }

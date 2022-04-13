@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.app.nextoque.databinding.FragmentMinhasRetiradasBinding;
 import com.app.nextoque.entity.Usuario;
-import com.app.nextoque.model.AcaoRepositorio;
+import com.app.nextoque.model.AcaoBO;
 import com.google.android.material.navigation.NavigationView;
 
 public class MinhasRetiradasFragment extends Fragment {
@@ -36,7 +36,7 @@ public class MinhasRetiradasFragment extends Fragment {
 
         binding.listMinhasRetiradas.setLayoutManager(layoutManager);
 
-        new AcaoRepositorio(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarMinhasRetiradas(binding.listMinhasRetiradas, navigationView);
+        new AcaoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarMinhasRetiradas(binding.listMinhasRetiradas, navigationView);
 
         return binding.getRoot();
     }
