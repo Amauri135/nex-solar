@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,25 +45,29 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
 
     @Override
     public void onBindViewHolder(@NonNull MinhasRetiradasViewHolder holder, int position) {
+        if(position % 2 == 1){
+            ((CardView)holder.itemView.findViewById(R.id.cardViewMinhasRetiradas)).setCardBackgroundColor(context.getResources().getColor(R.color.cinza_claro));
+        }
+
         Acao retirada = minhasRetiradas.get(position);
 
-        new ProdutoBO(context, usuario, fragmentManager).buscarNomeProduto(retirada.getIdProduto(), holder.produto);
+        new ProdutoBO(context, usuario, fragmentManager).buscarNomeProduto(retirada.getIdProduto(), holder.getProduto());
 
         Long qtRetirada =  retirada.getQuantidadeRetirada();
         Long qtDevolvida = retirada.getQuantidadeDevolvida();
 
-        holder.qtRetirada.setText(qtRetirada != null ? qtRetirada.toString() : "");
-        holder.qtDevolvida.setText(qtDevolvida != null ? qtDevolvida.toString() : "");
+        holder.getQtRetirada().setText(qtRetirada != null ? qtRetirada.toString() : "");
+        holder.getQtDevolvida().setText(qtDevolvida != null ? qtDevolvida.toString() : "");
 
-        new ObraBO(context, usuario).buscarNomeObra(retirada.getIdObra(), holder.obra);
+        new ObraBO(context, usuario).buscarNomeObra(retirada.getIdObra(), holder.getObra());
 
-        holder.data.setText(retirada.getData());
-        holder.hora.setText(retirada.getHora());
+        holder.getData().setText(retirada.getData());
+        holder.getHora().setText(retirada.getHora());
 
-        holder.obs.setText(retirada.getObservacao());
+        holder.getObs().setText(retirada.getObservacao());
 
         if(retirada.getObservacao() == null || retirada.getObservacao().trim().isEmpty()){
-            holder.obs.setText("-");
+            holder.getObs().setText("-");
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +80,9 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
         });
 
         if(StatusRetiradaEnum.PENDENTE.toString().equals(retirada.getStatus())) {
-            holder.status.setText(StatusRetiradaEnum.PENDENTE.getLabel());
-            holder.status.setTextColor(context.getResources().getColor(R.color.amarelo));
-            holder.status.setBackgroundResource(R.drawable.border_background_amarelo);
+            holder.getStatus().setText(StatusRetiradaEnum.PENDENTE.getLabel());
+            holder.getStatus().setTextColor(context.getResources().getColor(R.color.amarelo));
+            holder.getStatus().setBackgroundResource(R.drawable.border_background_amarelo);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,17 +98,17 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
                 }
             });
         } else if(StatusRetiradaEnum.DEVOLVIDO.toString().equals(retirada.getStatus())){
-            holder.status.setText(StatusRetiradaEnum.DEVOLVIDO.getLabel());
-            holder.status.setTextColor(context.getResources().getColor(R.color.azul));
-            holder.status.setBackgroundResource(R.drawable.border_background_azul);
+            holder.getStatus().setText(StatusRetiradaEnum.DEVOLVIDO.getLabel());
+            holder.getStatus().setTextColor(context.getResources().getColor(R.color.azul));
+            holder.getStatus().setBackgroundResource(R.drawable.border_background_azul);
         } else if(StatusRetiradaEnum.USADO_EM_OBRA.toString().equals(retirada.getStatus())){
-            holder.status.setText(StatusRetiradaEnum.USADO_EM_OBRA.getLabel());
-            holder.status.setTextColor(context.getResources().getColor(R.color.vermelho));
-            holder.status.setBackgroundResource(R.drawable.border_background_vermelho);
+            holder.getStatus().setText(StatusRetiradaEnum.USADO_EM_OBRA.getLabel());
+            holder.getStatus().setTextColor(context.getResources().getColor(R.color.vermelho));
+            holder.getStatus().setBackgroundResource(R.drawable.border_background_vermelho);
         } else {
-            holder.status.setText(StatusRetiradaEnum.INCONSISTENTE.getLabel());
-            holder.status.setTextColor(context.getResources().getColor(R.color.vermelho));
-            holder.status.setBackgroundResource(R.drawable.border_background_vermelho);
+            holder.getStatus().setText(StatusRetiradaEnum.INCONSISTENTE.getLabel());
+            holder.getStatus().setTextColor(context.getResources().getColor(R.color.vermelho));
+            holder.getStatus().setBackgroundResource(R.drawable.border_background_vermelho);
         }
     }
 

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,9 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.R;
 import com.app.nextoque.databinding.FragmentLoginBinding;
+import com.app.nextoque.entity.Usuario;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -42,11 +41,11 @@ public class LoginFragment extends Fragment {
         final EditText editTextSenha = binding.editTextSenha.getEditText();
         final Button buttonIniciarSessao = binding.buttonIniciarSessao;
         final Button buttonCriarConta = binding.buttonCriarConta;
-        final TextView textViewEsqueciASenha = binding.textViewEsqueciASenha;
-
-        textViewEsqueciASenha.setOnClickListener(view -> {
-            Toast.makeText(getContext(), "Esqueci a senhaaa", Toast.LENGTH_LONG).show();
-        });
+//        final TextView textViewEsqueciASenha = binding.textViewEsqueciASenha;
+//
+//        textViewEsqueciASenha.setOnClickListener(view -> {
+//            Toast.makeText(getContext(), "Esqueci a senhaaa", Toast.LENGTH_LONG).show();
+//        });
 
         buttonCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override

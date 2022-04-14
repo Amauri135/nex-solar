@@ -4,18 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.nextoque.entity.Produto;
 import com.app.nextoque.adapter.ProdutoAdapter;
+import com.app.nextoque.databinding.FragmentListarProdutosBinding;
+import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
-import com.app.nextoque.databinding.FragmentEstoqueBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,9 +27,8 @@ import java.util.List;
 
 public class ListarProdutosFragment extends Fragment {
 
-    private FragmentEstoqueBinding binding;
+    private FragmentListarProdutosBinding binding;
     private RecyclerView recyclerView;
-    private ProgressBar progressBar;
     private TextView viewMenuAcoes;
     private Usuario usuario;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -38,7 +37,14 @@ public class ListarProdutosFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        binding = FragmentEstoqueBinding.inflate(inflater, container, false);
+        binding = FragmentListarProdutosBinding.inflate(inflater, container, false);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        binding.recyclerViewEstoque.setLayoutManager(layoutManager);
+
 //        recyclerView = binding.recyclerViewEstoque;
 //        progressBar = binding.progressBar;
 //        viewMenuAcoes = binding.ViewMenuAcoes;
@@ -95,7 +101,6 @@ public class ListarProdutosFragment extends Fragment {
                         }
 
                     }
-                    progressBar.setVisibility(View.GONE);
                 }
             }
 
