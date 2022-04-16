@@ -27,7 +27,7 @@ public class RetirarProdutoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentRetirarProdutoBinding.inflate(inflater, container, false);
 
-        new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarProdutos(binding.spinnerProdutos);
+        new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarProdutosRetirarProduto(binding.spinnerProdutos);
 
         new ObraBO(getContext(), usuario).buscarObras(binding.spinnerObras);
 

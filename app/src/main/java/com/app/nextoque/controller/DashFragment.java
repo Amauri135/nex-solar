@@ -88,7 +88,7 @@ public class DashFragment extends Fragment {
         navigationView.getMenu().findItem(R.id.nav_listar).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                replaceFragment(new ListarProdutosFragment());
+                replaceFragment(new ListarProdutosFragment(usuario, navigationView));
                 return false;
             }
         });

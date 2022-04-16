@@ -35,11 +35,14 @@ public class Produto {
     @PropertyName("unidade_medida")
     private String unidadeMedida;
 
+    @PropertyName(("obs"))
+    private String obs;
+
     public Produto() {
 
     }
 
-    public Produto(String data, String hora, String idUsuario, String tipo, String descricao, Long quantidadeInicial, Long quantidadeAtual, String categoria, String unidadeMedida) {
+    public Produto(String data, String hora, String idUsuario, String tipo, String descricao, Long quantidadeInicial, Long quantidadeAtual, String categoria, String unidadeMedida, String obs) {
         this.data = data;
         this.hora = hora;
         this.idUsuario = idUsuario;
@@ -49,6 +52,7 @@ public class Produto {
         this.quantidadeAtual = quantidadeAtual;
         this.categoria = categoria;
         this.unidadeMedida = unidadeMedida;
+        this.obs = obs;
     }
 
     @PropertyName("data")
@@ -130,6 +134,15 @@ public class Produto {
 
     public void setUnidadeMedida(String unidadeMedida) {
         this.unidadeMedida = unidadeMedida;
+    }
+
+    @PropertyName("obs")
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
     }
 
     public String getId() {

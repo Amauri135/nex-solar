@@ -84,6 +84,8 @@ public class NovoProdutoFragment extends Fragment {
             produto.setData(dateFormat.format(data));
             produto.setHora(timeFormat.format(data));
 
+            produto.setObs(binding.observacao.getEditText().getText() != null ? binding.observacao.getEditText().getText().toString() : null);
+
             new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(produto);
         }
 

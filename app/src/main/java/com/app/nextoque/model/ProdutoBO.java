@@ -7,13 +7,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextoque.R;
+import com.app.nextoque.adapter.ListarProdutosAdapter;
 import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Obra;
 import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -107,8 +110,7 @@ public class ProdutoBO {
                 .addOnFailureListener(command -> Toast.makeText(context, "Ocorreu uma falha ao salvar o produto.", Toast.LENGTH_SHORT).show());
     }
 
-    public void buscarProdutos(Spinner spinnerProdutos) {
-
+    public void buscarProdutosRetirarProduto(Spinner spinnerProdutos) {
         produtoReference.get().addOnCompleteListener(runnable ->  {
             try{
                 if(runnable.isSuccessful()) {
@@ -138,38 +140,31 @@ public class ProdutoBO {
                 Toast.makeText(context, "Ocorreu uma exceção ao carregar os produtos: " + e.getCause().toString(), Toast.LENGTH_LONG).show();
             }
         });
+    }
 
+    public void buscarProdutosListarProdutos(RecyclerView recyclerViewListarProdutos, NavigationView navigationView) {
+        List<Produto> produtos = new ArrayList<>();
 
-//        List<Produto> produtos = new ArrayList<>();
-//
-//        ArrayAdapter produtoAdapter = new ArrayAdapter<String>(context, R.layout.list_item_spinner);
+        ListarProdutosAdapter produtoAdapter = new ListarProdutosAdapter(context, produtos, navigationView);
 
-//        produtoAdapter.add("");
-////        DatabaseReference estoqueReference = FirebaseDatabase.getInstance().getReference("filiais/-MlrWiX0mZJogkqzQJZ5/estoque/produtos");
-//
-//        produtoReference.orderByKey().addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists() && snapshot.hasChildren()){
-//                    for(DataSnapshot child : snapshot.getChildren()){
-//                        Produto produto = child.getValue(Produto.class);
-//
-//                        if(produto != null){
-//                            produto.setId(child.getKey());
-//                            produtos.add(produto);
-//                            produtoAdapter.add(produto.getDescricao()+" - "+produto.getQuantidadeAtual().toString()+" "+produto.getUnidadeMedida());
-//                        }
-//
-//                    }
-//
-//                    spinnerProdutos.setAdapter(produtoAdapter);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(context, "O carregamento dos produtos foi interrompido.", Toast.LENGTH_LONG).show();
-//            }
-//        });
+        recyclerViewListarProdutos.setAdapter(produtoAdapter);
+
+        produtoReference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        Produto produto = child.getValue(Produto.class);
+
+                        if (produto != null) {
+                            produto.setId(child.getKey());
+                            produtos.add(produto);
+                            produtoAdapter.notifyItemInserted(produtos.size() - 1);
+                        }
+
+                    }
+                }
+            }
+        });
     }
 }
