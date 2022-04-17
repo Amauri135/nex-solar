@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextoque.R;
+import com.app.nextoque.controller.EditarProdutoFragment;
 import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.model.ProdutoBO;
@@ -95,6 +96,16 @@ public class ListarProdutosAdapter extends RecyclerView.Adapter<ListarProdutosVi
                 AlertDialog alertDialog = builder.create();
 
                 alertDialog.show();
+            }
+        });
+
+        holder.getBtnAlterarProduto().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, new EditarProdutoFragment(usuario, produto, navigationView))
+                        .addToBackStack("fromListarProdutos(Editar)toEditarProduto")
+                        .commit();
             }
         });
     }
