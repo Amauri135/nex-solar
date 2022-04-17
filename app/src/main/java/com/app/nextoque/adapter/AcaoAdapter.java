@@ -23,7 +23,7 @@ public class AcaoAdapter extends RecyclerView.Adapter<AcaoViewHolder> {
     private List<Acao> acoes;
     private Context context;
     private final Usuario usuario;
-    private FragmentManager fragmentManager;
+    private final FragmentManager fragmentManager;
 
     public AcaoAdapter(List<Acao> acoes, Context context, Usuario usuario, FragmentManager fragmentManager)
     {

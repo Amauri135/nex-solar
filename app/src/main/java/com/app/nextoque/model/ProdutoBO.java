@@ -27,14 +27,14 @@ import java.util.List;
 public class ProdutoBO {
 
     private final Context context;
-    private DatabaseReference produtoReference;
+    private DatabaseReference produtosReference;
     private final FragmentManager fragmentManager;
     private final Usuario usuario;
 
     public ProdutoBO(Context context, Usuario usuario, FragmentManager fragmentManager) {
         this.context = context;
         this.usuario = usuario;
-        this.produtoReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/estoque/produtos/");
+        this.produtosReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/estoque/produtos/");
         this.fragmentManager = fragmentManager;
     }
 
@@ -94,7 +94,7 @@ public class ProdutoBO {
     }
 
     public void buscarNomeProduto(String idProduto, TextView nomeProdutoView){
-        produtoReference.child(idProduto).child("descricao").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+        produtosReference.child(idProduto).child("descricao").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 String nomeProduto = dataSnapshot.getValue(String.class);
@@ -105,13 +105,13 @@ public class ProdutoBO {
     }
 
     public void salvarProduto(Produto produto) {
-        produtoReference.push().setValue(produto)
+        produtosReference.push().setValue(produto)
                 .addOnSuccessListener(command -> Toast.makeText(context, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(command -> Toast.makeText(context, "Ocorreu uma falha ao salvar o produto.", Toast.LENGTH_SHORT).show());
     }
 
     public void buscarProdutosRetirarProduto(Spinner spinnerProdutos) {
-        produtoReference.get().addOnCompleteListener(runnable ->  {
+        produtosReference.get().addOnCompleteListener(runnable ->  {
             try{
                 if(runnable.isSuccessful()) {
                     List<Object> listProduto = new ArrayList<>();
@@ -145,11 +145,11 @@ public class ProdutoBO {
     public void buscarProdutosListarProdutos(RecyclerView recyclerViewListarProdutos, NavigationView navigationView) {
         List<Produto> produtos = new ArrayList<>();
 
-        ListarProdutosAdapter produtoAdapter = new ListarProdutosAdapter(context, produtos, navigationView);
+        ListarProdutosAdapter produtoAdapter = new ListarProdutosAdapter(context, produtos, usuario, fragmentManager, navigationView);
 
         recyclerViewListarProdutos.setAdapter(produtoAdapter);
 
-        produtoReference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+        produtosReference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
@@ -164,6 +164,15 @@ public class ProdutoBO {
 
                     }
                 }
+            }
+        });
+    }
+
+    public void excluirProduto(String idProduto) {
+        produtosReference.child(idProduto).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, "Produto excluído com sucesso!", Toast.LENGTH_SHORT).show();
             }
         });
     }

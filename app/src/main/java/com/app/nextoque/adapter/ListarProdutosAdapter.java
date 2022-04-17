@@ -1,16 +1,21 @@
 package com.app.nextoque.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextoque.R;
 import com.app.nextoque.entity.Produto;
+import com.app.nextoque.entity.Usuario;
+import com.app.nextoque.model.ProdutoBO;
 import com.app.nextoque.model.UsuarioBO;
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,10 +25,14 @@ public class ListarProdutosAdapter extends RecyclerView.Adapter<ListarProdutosVi
     private List<Produto> produtos;
     private Context context;
     private final NavigationView navigationView;
+    private final Usuario usuario;
+    private final FragmentManager fragmentManager;
 
-    public ListarProdutosAdapter(Context context, List<Produto> produtos, NavigationView navigationView) {
+    public ListarProdutosAdapter(Context context, List<Produto> produtos, Usuario usuario, FragmentManager fragmentManager, NavigationView navigationView) {
         this.context = context;
         this.produtos = produtos;
+        this.usuario = usuario;
+        this.fragmentManager = fragmentManager;
         this.navigationView = navigationView;
     }
 
@@ -59,6 +68,33 @@ public class ListarProdutosAdapter extends RecyclerView.Adapter<ListarProdutosVi
                 if(navigationView.getVisibility() == View.VISIBLE){
                     navigationView.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        holder.getBtnExcluirProduto().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                builder.setMessage("Essa ação não poderá ser desfeita! Deseja mesmo excluir?");
+
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        new ProdutoBO(context, usuario, fragmentManager).excluirProduto(produto.getId());
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+
+                alertDialog.show();
             }
         });
     }

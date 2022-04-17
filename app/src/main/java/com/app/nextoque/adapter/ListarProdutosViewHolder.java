@@ -1,6 +1,7 @@
 package com.app.nextoque.adapter;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,9 @@ public class ListarProdutosViewHolder extends RecyclerView.ViewHolder{
     private final TextView horaCadastro;
     private final TextView cadastradoPor;
     private final TextView obs;
+    private final ImageButton btnVerFotos;
+    private final ImageButton btnAlterarProduto;
+    private final ImageButton btnExcluirProduto;
 
 
     public ListarProdutosViewHolder(@NonNull View itemView) {
@@ -30,6 +34,9 @@ public class ListarProdutosViewHolder extends RecyclerView.ViewHolder{
         horaCadastro = itemView.findViewById(R.id.hora_listar_produtos);
         cadastradoPor = itemView.findViewById(R.id.cadastrado_por_listar_produtos);
         obs = itemView.findViewById(R.id.obs_listar_produtos);
+        btnVerFotos = itemView.findViewById(R.id.btnVerFotos);
+        btnAlterarProduto = itemView.findViewById(R.id.btnAlterarProduto);
+        btnExcluirProduto = itemView.findViewById(R.id.btnExcluirProduto);
     }
 
     public TextView getProduto() {
@@ -62,5 +69,17 @@ public class ListarProdutosViewHolder extends RecyclerView.ViewHolder{
 
     public TextView getObs() {
         return obs;
+    }
+
+    public ImageButton getBtnVerFotos() {
+        return btnVerFotos;
+    }
+
+    public ImageButton getBtnAlterarProduto() {
+        return btnAlterarProduto;
+    }
+
+    public ImageButton getBtnExcluirProduto() {
+        return btnExcluirProduto;
     }
 }
