@@ -205,4 +205,32 @@ public class AcaoBO {
                 });
 
     }
+
+    public void registrarAlteracao(String idProduto, String obsAlteracao) {
+        Acao alteracao = new Acao();
+
+        alteracao.setIdProduto(idProduto);
+        alteracao.setIdUsuario(usuario.getId());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+
+        Date data = new Date();
+
+        alteracao.setData(dateFormat.format(data));
+        alteracao.setHora(timeFormat.format(data));
+
+        alteracao.setObservacao(obsAlteracao);
+
+        alteracao.setTipo("alteracao");
+
+        acaoReference.push().setValue(alteracao).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, "Alteração realizada com sucesso!", Toast.LENGTH_SHORT).show();
+
+                fragmentManager.popBackStack();
+            }
+        });
+    }
 }

@@ -98,6 +98,15 @@ public class ProdutoBO {
         }
     }
 
+    public void editarProduto(Produto produto, String obsAlteracao) {
+        produtosReference.child(produto.getId()).setValue(produto).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                new AcaoBO(context, usuario, fragmentManager).registrarAlteracao(produto.getId(), obsAlteracao);
+            }
+        });
+    }
+
     public void buscarNomeProduto(String idProduto, TextView nomeProdutoView){
         produtosReference.child(idProduto).child("descricao").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override

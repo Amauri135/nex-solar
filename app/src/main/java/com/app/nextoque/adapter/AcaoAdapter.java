@@ -59,7 +59,9 @@ public class AcaoAdapter extends RecyclerView.Adapter<AcaoViewHolder> {
 
         String status = acoes.get(position).getStatus();
 
-        holder.status.setText(StatusRetiradaEnum.valueOf(status.toUpperCase(Locale.ROOT)).getLabel());
+        if(status != null) {
+            holder.status.setText(StatusRetiradaEnum.valueOf(status.toUpperCase()).getLabel());
+        }
     }
 
     @Override
