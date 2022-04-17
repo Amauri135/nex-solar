@@ -46,9 +46,12 @@ public class Acao {
     @PropertyName("quantidade")
     private Long quantidade;
 
+    @PropertyName("realizada_por")
+    private String realizadaPor;
+
     public Acao() {}
 
-    public Acao(String data, String hora, String idProduto, String observacao, String tipo, Long quantidadeDevolvida, Long quantidadeRetirada, String status, HashMap<String, Acao> devolucoes, String idUsuario, String idObra) {
+    public Acao(String data, String hora, String idProduto, String observacao, String tipo, Long quantidadeDevolvida, Long quantidadeRetirada, String status, HashMap<String, Acao> devolucoes, String idUsuario, String idObra, String realizadaPor) {
         this.data = data;
         this.hora = hora;
         this.idProduto = idProduto;
@@ -60,6 +63,7 @@ public class Acao {
         this.devolucoes = devolucoes;
         this.idUsuario = idUsuario;
         this.idObra = idObra;
+        this.realizadaPor = realizadaPor;
     }
 
     @PropertyName("data")
@@ -168,6 +172,15 @@ public class Acao {
 
     public void setQuantidade(Long quantidade) {
         this.quantidade = quantidade;
+    }
+
+    @PropertyName("realizada_por")
+    public String getRealizadaPor() {
+        return realizadaPor;
+    }
+
+    public void setRealizadaPor(String realizadaPor) {
+        this.realizadaPor = realizadaPor;
     }
 
     public String getId() {

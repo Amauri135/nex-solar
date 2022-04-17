@@ -210,7 +210,7 @@ public class AcaoBO {
         Acao alteracao = new Acao();
 
         alteracao.setIdProduto(idProduto);
-        alteracao.setIdUsuario(usuario.getId());
+        alteracao.setRealizadaPor(usuario.getId());
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
