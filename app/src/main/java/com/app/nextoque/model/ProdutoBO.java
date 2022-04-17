@@ -6,15 +6,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextoque.R;
 import com.app.nextoque.adapter.ListarProdutosAdapter;
+import com.app.nextoque.controller.ListarProdutosFragment;
+import com.app.nextoque.controller.NovoProdutoFragment;
 import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Obra;
 import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ProdutoBO {
@@ -104,10 +109,24 @@ public class ProdutoBO {
         });
     }
 
-    public void salvarProduto(Produto produto) {
+    public void salvarProduto(Produto produto, NavigationView navigationView) {
         produtosReference.push().setValue(produto)
-                .addOnSuccessListener(command -> Toast.makeText(context, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(command -> Toast.makeText(context, "Ocorreu uma falha ao salvar o produto.", Toast.LENGTH_SHORT).show());
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(context, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.frame_layout, new NovoProdutoFragment(navigationView, usuario))
+                                .commit();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Ocorreu uma falha ao salvar o produto.", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public void buscarProdutosRetirarProduto(Spinner spinnerProdutos) {
@@ -153,26 +172,37 @@ public class ProdutoBO {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
+                    List<Produto> list = new ArrayList<>();
+
                     for (DataSnapshot child : dataSnapshot.getChildren()) {
                         Produto produto = child.getValue(Produto.class);
 
                         if (produto != null) {
                             produto.setId(child.getKey());
-                            produtos.add(produto);
-                            produtoAdapter.notifyItemInserted(produtos.size() - 1);
+                            list.add(produto);
                         }
+                    }
 
+                    Collections.reverse(list);
+
+                    for(Produto produto : list) {
+                        produtos.add(produto);
+                        produtoAdapter.notifyItemInserted(produtos.size() - 1);
                     }
                 }
             }
         });
     }
 
-    public void excluirProduto(String idProduto) {
+    public void excluirProduto(String idProduto, NavigationView navigationView) {
         produtosReference.child(idProduto).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(context, "Produto excluído com sucesso!", Toast.LENGTH_SHORT).show();
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, new ListarProdutosFragment(usuario, navigationView))
+                        .commit();
             }
         });
     }

@@ -86,7 +86,7 @@ public class NovoProdutoFragment extends Fragment {
 
             produto.setObs(binding.observacao.getEditText().getText() != null ? binding.observacao.getEditText().getText().toString() : null);
 
-            new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(produto);
+            new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(produto, navigationView);
         }
 
 

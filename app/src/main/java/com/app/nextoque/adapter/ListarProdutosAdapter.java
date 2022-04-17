@@ -81,7 +81,7 @@ public class ListarProdutosAdapter extends RecyclerView.Adapter<ListarProdutosVi
                 builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        new ProdutoBO(context, usuario, fragmentManager).excluirProduto(produto.getId());
+                        new ProdutoBO(context, usuario, fragmentManager).excluirProduto(produto.getId(), navigationView);
                     }
                 });
 
