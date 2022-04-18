@@ -7,8 +7,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextoque.R;
+import com.app.nextoque.adapter.ListarObrasAdapter;
 import com.app.nextoque.controller.NovaObraFragment;
 import com.app.nextoque.entity.Obra;
 import com.app.nextoque.entity.Usuario;
@@ -21,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +40,7 @@ public class ObraBO {
         this.obraReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/obras");
     }
     
-    public void buscarObras(Spinner spinnerObras) {
+    public void buscarObrasRetirarProduto(Spinner spinnerObras) {
         obraReference.get().addOnCompleteListener(runnable ->  {
             try{
                 if(runnable.isSuccessful()) {
@@ -112,5 +115,36 @@ public class ObraBO {
                 }
             });
         }
+    }
+
+    public void buscarObrasListarObras(RecyclerView recyclerViewListarObras, NavigationView navigationView) {
+        List<Obra> obras = new ArrayList<>();
+
+        ListarObrasAdapter listarObrasAdapter = new ListarObrasAdapter(context, obras, navigationView);
+
+        recyclerViewListarObras.setAdapter(listarObrasAdapter);
+
+        obraReference.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists() && dataSnapshot.hasChildren()) {
+                    List<Obra> list = new ArrayList<>();
+
+                    for(DataSnapshot child : dataSnapshot.getChildren()){
+                        Obra obra = child.getValue(Obra.class);
+
+                        list.add(obra);
+                    }
+
+                    Collections.reverse(list);
+
+                    for(Obra obra : list) {
+                        obras.add(obra);
+
+                        listarObrasAdapter.notifyItemInserted(obras.size() - 1);
+                    }
+                }
+            }
+        });
     }
 }

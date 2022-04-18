@@ -126,7 +126,7 @@ public class DashFragment extends Fragment {
         navigationView.getMenu().findItem(R.id.nav_listar_obras).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-               // replaceFragment(new NovaObraFragment(usuario, navigationView));
+                replaceFragment(new ListarObrasFragment(usuario, navigationView));
                 return false;
             }
         }).setVisible(TipoUsuarioEnum.ADMINISTRADOR.toString().equalsIgnoreCase(usuario.getTipoAtual())

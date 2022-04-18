@@ -32,54 +32,42 @@ public class NovaObraFragment extends Fragment {
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(navigationView.getVisibility() == View.VISIBLE) {
-                    navigationView.setVisibility(View.GONE);
-                }
+                esconderNavigationView();
             }
         });
 
         binding.formularioCadastroObra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(navigationView.getVisibility() == View.VISIBLE) {
-                    navigationView.setVisibility(View.GONE);
-                }
+                esconderNavigationView();
             }
         });
 
         binding.nome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(navigationView.getVisibility() == View.VISIBLE) {
-                    navigationView.setVisibility(View.GONE);
-                }
+                esconderNavigationView();
             }
         });
 
         binding.endereco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(navigationView.getVisibility() == View.VISIBLE) {
-                    navigationView.setVisibility(View.GONE);
-                }
+                esconderNavigationView();
             }
         });
 
         binding.cidade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(navigationView.getVisibility() == View.VISIBLE) {
-                    navigationView.setVisibility(View.GONE);
-                }
+                esconderNavigationView();
             }
         });
 
         binding.responsavel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(navigationView.getVisibility() == View.VISIBLE) {
-                    navigationView.setVisibility(View.GONE);
-                }
+                esconderNavigationView();
             }
         });
 
@@ -111,5 +99,11 @@ public class NovaObraFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void esconderNavigationView() {
+        if (navigationView.getVisibility() == View.VISIBLE) {
+            navigationView.setVisibility(View.GONE);
+        }
     }
 }

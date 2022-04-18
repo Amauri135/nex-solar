@@ -29,7 +29,7 @@ public class RetirarProdutoFragment extends Fragment {
 
         new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarProdutosRetirarProduto(binding.spinnerProdutos);
 
-        new ObraBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarObras(binding.spinnerObras);
+        new ObraBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarObrasRetirarProduto(binding.spinnerObras);
 
         binding.formularioRetiradaProduto.setOnClickListener(new View.OnClickListener() {
             @Override
