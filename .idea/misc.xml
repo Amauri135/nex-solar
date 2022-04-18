@@ -17,6 +17,7 @@
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_listar_produtos.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_login.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_minhas_retiradas.xml" value="0.2" />
+        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_nova_obra.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_retirar_produto.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/item_produto_com_foto.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/item_produto_sem_foto.xml" value="0.2" />
@@ -24,6 +25,7 @@
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_listar_produtos.xml" value="0.22" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_minhas_retiradas.xml" value="0.25" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_ultimas_acoes.xml" value="0.2" />
+        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/menu/nav_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -59,7 +59,7 @@ public class MinhasRetiradasAdapter extends RecyclerView.Adapter<MinhasRetiradas
         holder.getQtRetirada().setText(qtRetirada != null ? qtRetirada.toString() : "");
         holder.getQtDevolvida().setText(qtDevolvida != null ? qtDevolvida.toString() : "");
 
-        new ObraBO(context, usuario).buscarNomeObra(retirada.getIdObra(), holder.getObra());
+        new ObraBO(context, usuario, fragmentManager).buscarNomeObra(retirada.getIdObra(), holder.getObra());
 
         holder.getData().setText(retirada.getData());
         holder.getHora().setText(retirada.getHora());

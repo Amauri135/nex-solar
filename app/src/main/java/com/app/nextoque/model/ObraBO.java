@@ -6,25 +6,34 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.nextoque.entity.Obra;
+import androidx.fragment.app.FragmentManager;
+
 import com.app.nextoque.R;
+import com.app.nextoque.controller.NovaObraFragment;
+import com.app.nextoque.entity.Obra;
 import com.app.nextoque.entity.Usuario;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ObraBO {
     private Context context;
     private DatabaseReference obraReference;
-    private Usuario usuario;
+    private final Usuario usuario;
+    private final FragmentManager fragmentManager;
 
-    public ObraBO(Context context, Usuario usuario) {
+    public ObraBO(Context context, Usuario usuario, FragmentManager fragmentManager) {
         this.context = context;
         this.usuario = usuario;
+        this.fragmentManager = fragmentManager;
         this.obraReference = FirebaseDatabase.getInstance().getReference("filiais/" + usuario.getIdFilial() + "/obras");
     }
     
@@ -69,5 +78,39 @@ public class ObraBO {
                 obra.setText(nomeObra);
             }
         });
+    }
+
+    public void salvarObra(String nome, String endereco, String cidade, String responsavel, NavigationView navigationView) {
+        if(nome == null || endereco == null || cidade == null || responsavel == null) {
+            Toast.makeText(context, "Preencha todos os campos obrigatórios!", Toast.LENGTH_SHORT).show();
+        } else {
+            Obra obra = new Obra();
+
+            obra.setNomeObra(nome);
+            obra.setEnderecoObra(endereco);
+            obra.setCidadeObra(cidade);
+            obra.setResponsavel(responsavel);
+
+            Date data = Calendar.getInstance().getTime();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+
+            obra.setData(dateFormat.format(data));
+            obra.setHora(timeFormat.format(data));
+
+            obra.setIdUsuario(usuario.getId());
+
+            obraReference.push().setValue(obra).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Toast.makeText(context, "Obra cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
+
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.frame_layout, new NovaObraFragment(usuario, navigationView))
+                            .commit();
+                }
+            });
+        }
     }
 }

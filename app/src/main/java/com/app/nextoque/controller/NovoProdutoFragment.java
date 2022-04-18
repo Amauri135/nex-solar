@@ -76,7 +76,7 @@ public class NovoProdutoFragment extends Fragment {
 
             produto.setIdUsuario(FirebaseAuth.getInstance().getUid());
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 
             Date data = Calendar.getInstance().getTime();
@@ -88,8 +88,6 @@ public class NovoProdutoFragment extends Fragment {
 
             new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(produto, navigationView);
         }
-
-
     }
 
 }

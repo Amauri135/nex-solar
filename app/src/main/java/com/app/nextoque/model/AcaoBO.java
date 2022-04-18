@@ -222,7 +222,7 @@ public class AcaoBO {
 
         alteracao.setObservacao(obsAlteracao);
 
-        alteracao.setTipo("alteracao");
+        alteracao.setTipo(TipoAcaoEnum.ALTERACAO.toString());
 
         acaoReference.push().setValue(alteracao).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

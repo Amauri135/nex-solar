@@ -34,4 +34,6 @@
     <string name="total">Total</string>
     <string name="descricao">Descrição</string>
     <string name="categoria">Categoria</string>
+    <string name="listar_obras">Listar Obras</string>
+    <string name="nova_obra">Nova Obra</string>
 </resources>

@@ -91,7 +91,9 @@ public class DashFragment extends Fragment {
                 replaceFragment(new ListarProdutosFragment(usuario, navigationView));
                 return false;
             }
-        });
+        }).setVisible(TipoUsuarioEnum.ADMINISTRADOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DIRETOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DEV.toString().equalsIgnoreCase(usuario.getTipoAtual()));
 
         navigationView.getMenu().findItem(R.id.nav_novo).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -107,7 +109,29 @@ public class DashFragment extends Fragment {
                 replaceFragment(new LiberarAcessoFragment());
                 return false;
             }
-        }).setVisible(TipoUsuarioEnum.ADMINISTRADOR.toString().equalsIgnoreCase(usuario.getTipoAtual()));
+        }).setVisible(TipoUsuarioEnum.ADMINISTRADOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DIRETOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DEV.toString().equalsIgnoreCase(usuario.getTipoAtual()));
+
+        navigationView.getMenu().findItem(R.id.nav_nova_obra).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                replaceFragment(new NovaObraFragment(usuario, navigationView));
+                return false;
+            }
+        }).setVisible(TipoUsuarioEnum.ADMINISTRADOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DIRETOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DEV.toString().equalsIgnoreCase(usuario.getTipoAtual()));
+
+        navigationView.getMenu().findItem(R.id.nav_listar_obras).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+               // replaceFragment(new NovaObraFragment(usuario, navigationView));
+                return false;
+            }
+        }).setVisible(TipoUsuarioEnum.ADMINISTRADOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DIRETOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DEV.toString().equalsIgnoreCase(usuario.getTipoAtual()));
 
         replaceFragment(new DashContentFragment(usuario));
 
