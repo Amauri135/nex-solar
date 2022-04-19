@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
     tools:context="com.app.nextoque.controller.DashFragment">
 
     <Toolbar
@@ -27,6 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/cinza_escuro"
+        app:subheaderColor="@color/hints"
+        app:itemShapeFillColor="@color/cinza_claro"
         app:itemIconTint="@color/hints"
         app:itemTextColor="@color/hints"
         app:menu="@menu/nav_menu" />
