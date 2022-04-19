@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context="com.app.nextoque.controller.NovoProdutoFragment">
+    android:layout_margin="5dp"
+    android:background="@drawable/background_formularios"
+    tools:context="com.app.nextoque.controller.RetirarProdutoFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/formulario_retirada_produto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,6 +23,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/prod_retirar_produto"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -36,7 +41,6 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="false"
                 android:enabled="false"
                 android:text="Produto *"
                 android:textColor="@color/hints" />
@@ -55,6 +59,8 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/obra_retirar_produto"
+            app:layout_constraintTop_toBottomOf="@id/prod_retirar_produto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -69,7 +75,6 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="false"
                 android:enabled="false"
                 android:text="Obra *"
                 android:textColor="@color/hints" />
@@ -87,6 +92,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/quantidade"
+            app:layout_constraintTop_toBottomOf="@id/obra_retirar_produto"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -109,6 +115,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/observacao"
+            app:layout_constraintTop_toBottomOf="@id/quantidade"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -123,20 +130,23 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:hint="Observação"
                 android:textColor="@color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/salvar"
+            app:layout_constraintTop_toBottomOf="@id/observacao"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/btn_border_radius"
             android:gravity="center"
             android:text="@string/salvar"
             app:backgroundTint="@color/azul" />
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -27,18 +27,51 @@ public class RetirarProdutoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentRetirarProdutoBinding.inflate(inflater, container, false);
 
-        new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarProdutosRetirarProduto(binding.spinnerProdutos);
-
-        new ObraBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarObrasRetirarProduto(binding.spinnerObras);
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
 
         binding.formularioRetiradaProduto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(navigationView.getVisibility() == View.VISIBLE){
-                    navigationView.setVisibility(View.GONE);
-                }
+                esconderNavigationView();
             }
         });
+
+        binding.prodRetirarProduto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.obraRetirarProduto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.quantidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.observacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarProdutosRetirarProduto(binding.spinnerProdutos);
+
+        new ObraBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarObrasRetirarProduto(binding.spinnerObras);
 
         binding.salvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +96,12 @@ public class RetirarProdutoFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    private void esconderNavigationView() {
+        if(navigationView.getVisibility() == View.VISIBLE){
+            navigationView.setVisibility(View.GONE);
+        }
     }
 
     public RetirarProdutoFragment(NavigationView navigationView, Usuario usuario) {

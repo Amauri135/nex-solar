@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/cinza_escuro"
+    android:background="@drawable/background_formularios"
     android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".controller.NovaObraFragment">
