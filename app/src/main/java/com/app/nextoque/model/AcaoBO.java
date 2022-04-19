@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -206,7 +207,7 @@ public class AcaoBO {
 
     }
 
-    public void registrarAlteracao(String idProduto, String obsAlteracao) {
+    public void registrarAlteracaoProduto(String idProduto, String obsAlteracao) {
         Acao alteracao = new Acao();
 
         alteracao.setIdProduto(idProduto);
@@ -215,7 +216,7 @@ public class AcaoBO {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 
-        Date data = new Date();
+        Date data = Calendar.getInstance().getTime();
 
         alteracao.setData(dateFormat.format(data));
         alteracao.setHora(timeFormat.format(data));
@@ -232,5 +233,34 @@ public class AcaoBO {
                 fragmentManager.popBackStack();
             }
         });
+    }
+
+    public void registrarAlteracaoObra(String idObra, String obsAlteracao) {
+        Acao alteracao = new Acao();
+
+        alteracao.setIdObra(idObra);
+        alteracao.setRealizadaPor(usuario.getId());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+
+        Date data = Calendar.getInstance().getTime();
+
+        alteracao.setData(dateFormat.format(data));
+        alteracao.setHora(timeFormat.format(data));
+
+        alteracao.setObservacao(obsAlteracao);
+
+        alteracao.setTipo(TipoAcaoEnum.ALTERACAO_OBRA.toString());
+
+        acaoReference.getParent().child("alteracoes_obras").push().setValue(alteracao).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, "Alteração realizada com sucesso!", Toast.LENGTH_SHORT).show();
+
+                fragmentManager.popBackStack();
+            }
+        });
+
     }
 }

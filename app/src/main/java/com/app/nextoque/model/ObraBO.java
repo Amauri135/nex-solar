@@ -120,7 +120,7 @@ public class ObraBO {
     public void buscarObrasListarObras(RecyclerView recyclerViewListarObras, NavigationView navigationView) {
         List<Obra> obras = new ArrayList<>();
 
-        ListarObrasAdapter listarObrasAdapter = new ListarObrasAdapter(context, obras, navigationView);
+        ListarObrasAdapter listarObrasAdapter = new ListarObrasAdapter(context, obras, usuario, fragmentManager, navigationView);
 
         recyclerViewListarObras.setAdapter(listarObrasAdapter);
 
@@ -133,6 +133,8 @@ public class ObraBO {
                     for(DataSnapshot child : dataSnapshot.getChildren()){
                         Obra obra = child.getValue(Obra.class);
 
+                        obra.setId(child.getKey());
+
                         list.add(obra);
                     }
 
@@ -144,6 +146,15 @@ public class ObraBO {
                         listarObrasAdapter.notifyItemInserted(obras.size() - 1);
                     }
                 }
+            }
+        });
+    }
+
+    public void editarObra(Obra obra, String obsAlteracao) {
+        obraReference.child(obra.getId()).setValue(obra).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                new AcaoBO(context, usuario, fragmentManager).registrarAlteracaoObra(obra.getId(), obsAlteracao);
             }
         });
     }

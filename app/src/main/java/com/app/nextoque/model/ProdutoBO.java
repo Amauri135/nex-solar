@@ -102,7 +102,7 @@ public class ProdutoBO {
         produtosReference.child(produto.getId()).setValue(produto).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                new AcaoBO(context, usuario, fragmentManager).registrarAlteracao(produto.getId(), obsAlteracao);
+                new AcaoBO(context, usuario, fragmentManager).registrarAlteracaoProduto(produto.getId(), obsAlteracao);
             }
         });
     }

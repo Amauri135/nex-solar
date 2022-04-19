@@ -4,7 +4,8 @@ public enum TipoAcaoEnum {
 
     ALTERACAO("alteracao", "Alteração"),
     RETIRADA("retirada", "Retirada"),
-    DEVOLUCAO("devolucao", "Devolução");
+    DEVOLUCAO("devolucao", "Devolução"),
+    ALTERACAO_OBRA("alteracao_obra", "Alteração");
 
     private String tipo;
     private String label;

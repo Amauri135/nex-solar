@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,62 @@ public class EditarProdutoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentEditarProdutoBinding.inflate(inflater, container, false);
+
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.formularioEditarProduto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.descricao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.categoria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.quantidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.unidadeMedida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.observacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.observacaoAlteracao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
 
         binding.descricao.getEditText().setText(produto.getDescricao());
         binding.categoria.getEditText().setText(produto.getCategoria());
@@ -65,16 +122,26 @@ public class EditarProdutoFragment extends Fragment {
                         binding.observacaoAlteracao.getEditText().getText().toString()
                         : null;
 
-                produto.setDescricao(descricao);
-                produto.setCategoria(categoria);
-                produto.setQuantidadeInicial(quantidade);
-                produto.setUnidadeMedida(unidadeMedida);
-                produto.setObs(obs);
+                if(descricao == null || categoria == null || quantidade == null || unidadeMedida == null) {
+                    Toast.makeText(getContext(), "Informe todos os campos obrigatórios!", Toast.LENGTH_SHORT).show();
+                } else {
+                    produto.setDescricao(descricao);
+                    produto.setCategoria(categoria);
+                    produto.setQuantidadeInicial(quantidade);
+                    produto.setUnidadeMedida(unidadeMedida);
+                    produto.setObs(obs);
 
-                new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).editarProduto(produto, obsAlteracao);
+                    new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).editarProduto(produto, obsAlteracao);
+                }
             }
         });
 
         return binding.getRoot();
+    }
+
+    private void esconderNavigationView() {
+        if(navigationView.getVisibility() == View.VISIBLE) {
+            navigationView.setVisibility(View.GONE);
+        }
     }
 }
