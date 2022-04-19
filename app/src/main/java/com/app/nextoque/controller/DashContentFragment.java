@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,10 @@ public class DashContentFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding =  FragmentDashContentBinding.inflate(inflater, container, false);
+
+        TextView titulo = (TextView) getActivity().findViewById(R.id.titulo);
+
+        titulo.setText("DASHBOARD");
 
         new AcaoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarRetiradasPendentes(binding.retiradasPendentes);
 

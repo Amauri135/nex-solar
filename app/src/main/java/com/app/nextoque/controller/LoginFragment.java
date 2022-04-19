@@ -41,11 +41,6 @@ public class LoginFragment extends Fragment {
         final EditText editTextSenha = binding.editTextSenha.getEditText();
         final Button buttonIniciarSessao = binding.buttonIniciarSessao;
         final Button buttonCriarConta = binding.buttonCriarConta;
-//        final TextView textViewEsqueciASenha = binding.textViewEsqueciASenha;
-//
-//        textViewEsqueciASenha.setOnClickListener(view -> {
-//            Toast.makeText(getContext(), "Esqueci a senhaaa", Toast.LENGTH_LONG).show();
-//        });
 
         buttonCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override

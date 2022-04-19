@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.app.nextoque.R;
 import com.app.nextoque.databinding.FragmentDevolverProdutoBinding;
 import com.app.nextoque.entity.Acao;
 import com.app.nextoque.entity.Usuario;
@@ -31,6 +33,10 @@ public class DevolverProdutoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentDevolverProdutoBinding.inflate(inflater, container, false);
+
+        TextView titulo = (TextView) getActivity().findViewById(R.id.titulo);
+
+        titulo.setText("DEVOLVER PRODUTO");
 
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,8 +85,8 @@ public class DevolverProdutoFragment extends Fragment {
                 } else {
                     Integer quantidade =
                             binding.quantidade.getEditText() == null || binding.quantidade.getEditText().toString().trim().isEmpty() ?
-                                    Integer.parseInt(binding.quantidade.getEditText().getText().toString()) :
-                                    null;
+                                    null :
+                                    Integer.parseInt(binding.quantidade.getEditText().getText().toString());
 
                     String obs =
                             binding.observacao.getEditText() != null ?

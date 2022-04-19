@@ -19,6 +19,14 @@
             android:background="@color/cinza_escuro"
             android:src="@drawable/ic_baseline_menu_24" />
 
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/hints"
+            android:textStyle="bold" />
+
     </Toolbar>
 
     <com.google.android.material.navigation.NavigationView xmlns:app="http://schemas.android.com/apk/res-auto"

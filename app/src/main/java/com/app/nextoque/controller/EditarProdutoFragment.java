@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.app.nextoque.R;
 import com.app.nextoque.databinding.FragmentEditarProdutoBinding;
 import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
@@ -32,6 +34,10 @@ public class EditarProdutoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentEditarProdutoBinding.inflate(inflater, container, false);
+
+        TextView titulo = (TextView) getActivity().findViewById(R.id.titulo);
+
+        titulo.setText("EDITAR PRODUTO");
 
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.app.nextoque.R;
 import com.app.nextoque.databinding.FragmentRetirarProdutoBinding;
 import com.app.nextoque.entity.Obra;
 import com.app.nextoque.entity.Produto;
@@ -26,6 +28,10 @@ public class RetirarProdutoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentRetirarProdutoBinding.inflate(inflater, container, false);
+
+        TextView titulo = (TextView) getActivity().findViewById(R.id.titulo);
+
+        titulo.setText("RETIRAR PRODUTO");
 
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override

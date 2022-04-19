@@ -11,10 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.app.nextoque.enums.TipoUsuarioEnum;
-import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.R;
 import com.app.nextoque.databinding.FragmentDashBinding;
+import com.app.nextoque.entity.Usuario;
+import com.app.nextoque.enums.TipoUsuarioEnum;
 import com.google.android.material.navigation.NavigationView;
 
 public class DashFragment extends Fragment {
@@ -31,6 +31,8 @@ public class DashFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentDashBinding.inflate(inflater,container, false);
+
+        binding.titulo.setText("DASHBOARD");
 
         navigationView = binding.navigationView;
 
