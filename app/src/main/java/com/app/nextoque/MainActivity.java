@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().popBackStack();
                 getSupportFragmentManager().popBackStack();
             } else {
-                getSupportFragmentManager().popBackStack();
+                getSupportFragmentManager().popBackStackImmediate();
             }
         }
     }

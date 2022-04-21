@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/drawable/border_background.xml" value="0.205" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/drawable/border_background_amarelo.xml" value="0.205" />
+        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/drawable/border_background_verde.xml" value="0.205" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/drawable/border_background_vermelho.xml" value="0.205" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/drawable/gradient.xml" value="0.205" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/drawable/ic_baseline_photo_library_24.xml" value="0.2075" />
@@ -19,23 +20,25 @@
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_editar_obra.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_editar_produto.xml" value="0.22" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_estoque.xml" value="0.2" />
+        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_liberar_acessos.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_listar_obras.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_listar_produtos.xml" value="0.2" />
-        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_login.xml" value="0.2" />
+        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_minhas_retiradas.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_nova_obra.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/fragment_retirar_produto.xml" value="0.25" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/item_produto_com_foto.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/item_produto_sem_foto.xml" value="0.2" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_informar_quantidade.xml" value="0.2" />
+        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_liberar_acessos.xml" value="0.22" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_listar_obras.xml" value="0.25" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_listar_produtos.xml" value="0.22" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_minhas_retiradas.xml" value="0.25" />
-        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_ultimas_acoes.xml" value="0.2" />
+        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/layout/layout_item_ultimas_acoes.xml" value="0.25" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/menu/nav_menu.xml" value="0.25" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.205" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.205" />
-        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.205" />
+        <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.5" />
         <entry key="..\:/Users/amaur/StudioProjects/AppNexSolar/app/src/main/res/mipmap-anydpi-v26/ic_logo_round.xml" value="0.205" />
       </map>
     </option>

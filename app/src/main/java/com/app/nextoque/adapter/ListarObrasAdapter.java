@@ -58,7 +58,7 @@ public class ListarObrasAdapter extends RecyclerView.Adapter<ListarObrasViewHold
         holder.getResponsavel().setText(obra.getResponsavel());
         holder.getData().setText(obra.getData());
         holder.getHora().setText(obra.getHora());
-        new UsuarioBO().buscarNomeUsuario(holder.getCadastradaPor(), obra.getIdUsuario());
+        new UsuarioBO(context, usuario, fragmentManager).buscarNomeUsuario(holder.getCadastradaPor(), obra.getIdUsuario());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

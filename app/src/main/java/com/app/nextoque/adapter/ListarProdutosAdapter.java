@@ -60,7 +60,7 @@ public class ListarProdutosAdapter extends RecyclerView.Adapter<ListarProdutosVi
         holder.getQtAtual().setText(produto.getQuantidadeAtual() != null ? produto.getQuantidadeAtual().toString() : null);
         holder.getDataCadastro().setText(produto.getData());
         holder.getHoraCadastro().setText(produto.getHora());
-        new UsuarioBO().buscarNomeUsuario(holder.getCadastradoPor(), produto.getIdUsuario());
+        new UsuarioBO(context, usuario, fragmentManager).buscarNomeUsuario(holder.getCadastradoPor(), produto.getIdUsuario());
         holder.getObs().setText(produto.getObs() == null || produto.getObs().trim().isEmpty() ? "-" : produto.getObs());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

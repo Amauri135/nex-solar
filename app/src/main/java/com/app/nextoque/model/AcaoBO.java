@@ -109,7 +109,10 @@ public class AcaoBO {
 
                                 Toast.makeText(context, "Devolução cadastrada com sucesso!", Toast.LENGTH_SHORT).show();
 
-                                fragmentManager.popBackStack();
+                                fragmentManager.beginTransaction()
+                                        .replace(R.id.frame_layout, new DashContentFragment(usuario))
+                                        .addToBackStack("fromDevolverToDashContent")
+                                        .commit();
                             }
                         });
             }

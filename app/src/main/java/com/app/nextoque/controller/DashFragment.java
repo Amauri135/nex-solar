@@ -108,7 +108,7 @@ public class DashFragment extends Fragment {
         navigationView.getMenu().findItem(R.id.nav_liberar).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                replaceFragment(new LiberarAcessoFragment());
+                replaceFragment(new LiberarAcessosFragment(usuario, navigationView));
                 return false;
             }
         }).setVisible(TipoUsuarioEnum.ADMINISTRADOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
