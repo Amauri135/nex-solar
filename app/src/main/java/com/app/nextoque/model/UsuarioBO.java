@@ -2,11 +2,14 @@ package com.app.nextoque.model;
 
 import android.content.Context;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.nextoque.R;
 import com.app.nextoque.adapter.LiberarAcessosAdapter;
+import com.app.nextoque.controller.LiberarAcessosFragment;
 import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.enums.TipoUsuarioEnum;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,7 +31,7 @@ public class UsuarioBO {
         this.context = context;
         this.usuario = usuario;
         this.fragmentManager = fragmentManager;
-        usuariosReference  = FirebaseDatabase.getInstance().getReference("usuarios");
+        this.usuariosReference  = FirebaseDatabase.getInstance().getReference("usuarios");
     }
 
     public void buscarNomeUsuario(TextView nomeUsuarioView, String idUsuario) {
@@ -58,6 +61,8 @@ public class UsuarioBO {
                     for(DataSnapshot child : dataSnapshot.getChildren()) {
                         Usuario solicitacao = child.getValue(Usuario.class);
 
+                        solicitacao.setId(child.getKey());
+
                         if(TipoUsuarioEnum.DEV.toString().toLowerCase().equals(usuario.getTipoAtual())){
                             usuarios.add(solicitacao);
                             liberarAcessosAdapter.notifyItemInserted(usuarios.size()-1);
@@ -75,6 +80,34 @@ public class UsuarioBO {
                         }
                     }
                 }
+            }
+        });
+    }
+
+    public void liberarAcesso(Usuario solicitacao, NavigationView navigationView) {
+        solicitacao.setTipoAtual(solicitacao.getTipoRequisicao());
+
+        usuariosReference.child(solicitacao.getId()).setValue(solicitacao).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, "Acesso liberado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, new LiberarAcessosFragment(usuario, navigationView))
+                        .commit();
+            }
+        });
+    }
+
+    public void recusarAcesso(Usuario solicitacao, NavigationView navigationView) {
+        usuariosReference.child(solicitacao.getId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, "Acesso recusado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, new LiberarAcessosFragment(usuario, navigationView))
+                        .commit();
             }
         });
     }

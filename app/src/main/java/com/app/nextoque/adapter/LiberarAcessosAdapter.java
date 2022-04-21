@@ -1,6 +1,8 @@
 package com.app.nextoque.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.nextoque.R;
 import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.enums.TipoUsuarioEnum;
+import com.app.nextoque.model.UsuarioBO;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
@@ -66,17 +69,54 @@ public class LiberarAcessosAdapter extends RecyclerView.Adapter<LiberarAcessosVi
         holder.getAceitar().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Liberar o acesso
-                    // - fazer tipo_atual := tipo_requisicao
-                    // - permanecer no fragment de liberar acessos
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                builder.setMessage("Deseja mesmo liberar o acesso para esse usuário?");
+
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        new UsuarioBO(context, usuario, fragmentManager).liberarAcesso(solicitacao, navigationView);
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+
+                alertDialog.show();
             }
         });
 
         holder.getRecusar().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //excluir a solicitacao do banco de dados
-                //permanecer no fragment de liberar acessos
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                builder.setMessage("Deseja mesmo recusar o acesso para esse usuário?");
+
+                builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        new UsuarioBO(context, usuario, fragmentManager).recusarAcesso(solicitacao, navigationView);
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+
+                alertDialog.show();
             }
         });
     }
