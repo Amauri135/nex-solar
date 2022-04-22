@@ -4,14 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="5dp"
+    android:background="@drawable/background_formularios"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.app.nextoque.controller.VerFotosFragment"
-    android:background="@color/black">
+    tools:context="com.app.nextoque.controller.VerFotosFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recyclerViewFotos">
+        tools:listitem="@layout/layout_item_ver_fotos"
+        android:id="@+id/recyclerViewVerFotos">
 
 <!--        <LinearLayout-->
 <!--            android:id="@+id/tableVerFotos"-->
