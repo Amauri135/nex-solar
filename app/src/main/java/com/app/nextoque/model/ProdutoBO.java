@@ -118,19 +118,27 @@ public class ProdutoBO {
         });
     }
 
-    public void salvarProduto(Produto produto, NavigationView navigationView) {
-        produtosReference.push().setValue(produto)
+    public void salvarProduto(Produto produto, List<String> fotosPathList, NavigationView navigationView) {
+        DatabaseReference produtoReference = produtosReference.push();
+
+        produtoReference.setValue(produto)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(context, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                        produto.setId(produtoReference.getKey());
 
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.frame_layout, new NovoProdutoFragment(navigationView, usuario))
-                                .commit();
+                        if(fotosPathList.isEmpty()){
+                            Toast.makeText(context, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                            fragmentManager.beginTransaction()
+                                    .replace(R.id.frame_layout, new NovoProdutoFragment(navigationView, usuario))
+                                    .commit();
+                        } else {
+                            new FotoBO(context, usuario, fragmentManager).salvarFotosProduto(fotosPathList, produto.getId(), navigationView);
+                        }
+
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(context, "Ocorreu uma falha ao salvar o produto.", Toast.LENGTH_SHORT).show();
