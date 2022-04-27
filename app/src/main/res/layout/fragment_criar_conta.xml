@@ -77,46 +77,14 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextConfirmarCriarSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeColor="@color/hints"
-        app:hintTextColor="@color/hints"
-        app:counterTextColor="@color/hints"
-        android:layout_below="@id/editTextCriarSenha"
-        android:layout_alignStart="@id/editTextCriarSenha"
-        android:layout_alignEnd="@id/editTextCriarSenha"
-        android:layout_marginTop="10dp"
-        android:textColorHint="@color/hints" >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="password"
-            android:hint="@string/confirmar_senha"
-            android:inputType="textPassword"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <CheckBox
-        android:id="@+id/checkboxConfirmarSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/editTextConfirmarCriarSenha"
-        android:layout_alignBottom="@id/editTextConfirmarCriarSenha"
-        android:layout_alignTop="@id/editTextConfirmarCriarSenha"
-        android:clickable="false"
-        android:textColor="@color/white" />
 
     <Spinner
         android:id="@+id/spinnerTipoUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextConfirmarCriarSenha"
-        android:layout_alignStart="@id/editTextConfirmarCriarSenha"
-        android:layout_alignEnd="@id/editTextConfirmarCriarSenha"
+        android:layout_below="@id/editTextCriarSenha"
+        android:layout_alignStart="@id/editTextCriarSenha"
+        android:layout_alignEnd="@id/editTextCriarSenha"
         android:layout_marginTop="10dp"
         tools:listitem="@layout/list_item_spinner" />
 
@@ -135,8 +103,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinnerFiliais"
-        android:layout_alignStart="@id/editTextConfirmarCriarSenha"
-        android:layout_alignEnd="@id/editTextConfirmarCriarSenha"
+        android:layout_alignStart="@id/editTextCriarSenha"
+        android:layout_alignEnd="@id/editTextCriarSenha"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_border_radius"
         android:text="@string/criar_conta"

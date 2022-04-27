@@ -64,7 +64,7 @@ public class LiberarAcessosAdapter extends RecyclerView.Adapter<LiberarAcessosVi
             holder.getTipoRequisicao().setText(TipoUsuarioEnum.DEV.toString());
         }
 
-        holder.getEmail().setText(usuario.getEmail());
+        holder.getEmail().setText(solicitacao.getEmail());
 
         holder.getAceitar().setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,14 +2,11 @@ package com.app.nextoque.controller;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -57,8 +54,6 @@ public class CriarContaFragment extends Fragment {
         final EditText editTextCriarNome = binding.editTextCriarNome.getEditText();
         final EditText editTextCriarUsername = binding.editTextCriarUsername.getEditText();
         final EditText editTextCriarSenha = binding.editTextCriarSenha.getEditText();
-        final EditText editTextConfirmarCriarSenha = binding.editTextConfirmarCriarSenha.getEditText();
-        final CheckBox checkBoxConfimarSenha = binding.checkboxConfirmarSenha;
         final Button buttonRegistrarConta = binding.buttonRegistrarConta;
         final Spinner spinnerFiliais = binding.spinnerFiliais;
         final Spinner spinnerTipoUsuario = binding.spinnerTipoUsuario;
@@ -99,28 +94,6 @@ public class CriarContaFragment extends Fragment {
                 }
         });
 
-        editTextConfirmarCriarSenha.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                checkBoxConfimarSenha.setChecked(false);
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals(editTextCriarSenha.getText().toString())){
-                    checkBoxConfimarSenha.setChecked(true);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(s.toString().equals(editTextCriarSenha.getText().toString())){
-                    checkBoxConfimarSenha.setChecked(true);
-                } else{
-                    checkBoxConfimarSenha.setChecked(false);
-                }
-            }
-        });
 
         buttonRegistrarConta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,16 +103,13 @@ public class CriarContaFragment extends Fragment {
                 String textNome = editTextCriarNome.getText().toString();
                 String textEmail = editTextCriarUsername.getText().toString();
                 String textSenha = editTextCriarSenha.getText().toString();
-                String textConfirmarSenha = editTextConfirmarCriarSenha.getText().toString();
 
-                if(textNome.equals("") || textEmail.equals("") || textSenha.equals("") || textConfirmarSenha.equals("")){
+                if(textNome.equals("") || textEmail.equals("") || textSenha.equals("")){
                     Toast.makeText(context, "Preencha todos os campos!", Toast.LENGTH_LONG).show();
                 } else if(!(spinnerFiliais.getSelectedItem() instanceof Filial)){
                     Toast.makeText(context, "Por favor, escolha alguma filial.", Toast.LENGTH_LONG).show();
                 } else if(!(spinnerTipoUsuario.getSelectedItem() instanceof TipoUsuarioEnum)) {
                     Toast.makeText(context, "Por favor, escolha um tipo de usuário.", Toast.LENGTH_LONG).show();
-                } else if(!checkBoxConfimarSenha.isChecked()) {
-                    Toast.makeText(context, "Por favor, verifique sua senha.", Toast.LENGTH_LONG).show();
                 } else {
                     Filial filial = (Filial) spinnerFiliais.getSelectedItem();
                     TipoUsuarioEnum tipoUsuario = (TipoUsuarioEnum) spinnerTipoUsuario.getSelectedItem();
@@ -175,7 +145,7 @@ public class CriarContaFragment extends Fragment {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(context, "Ocorreu uma exceção ao registrar a solicitação: " + e.getCause().toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Ocorreu uma falha ao registrar a solicitação: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
