@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardBackgroundColor="@color/black"
     android:layout_marginTop="5dp"
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
     android:layout_width="match_parent"
+    tools:showIn="@layout/fragment_ver_fotos"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/foto_ver_fotos"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_logo"
-        />
+        android:layout_height="wrap_content" />
 
 </androidx.cardview.widget.CardView>

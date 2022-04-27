@@ -2,6 +2,8 @@ package com.app.nextoque.model;
 
 import android.content.Context;
 import android.net.Uri;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,12 +42,12 @@ public class FotoBO {
         this.fotoReference = FirebaseStorage.getInstance().getReference("filiais/" + usuario.getIdFilial());
     }
 
-    public void buscarFotosProduto(RecyclerView recyclerViewVerFotos, String idProduto){
+    public void buscarFotosProduto(RecyclerView recyclerViewVerFotos, String idProduto, ProgressBar progressBar, NavigationView navigationView){
         StorageReference fotosProdutoReference = fotoReference.child("/produtos/" + idProduto);
 
         List<Uri> urisFotos = new ArrayList<>();
 
-        VerFotosAdapter verFotosAdapter = new VerFotosAdapter(context, urisFotos);
+        VerFotosAdapter verFotosAdapter = new VerFotosAdapter(context, urisFotos, navigationView);
 
         recyclerViewVerFotos.setAdapter(verFotosAdapter);
 
@@ -64,6 +66,8 @@ public class FotoBO {
                             }
                         });
                     }
+
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

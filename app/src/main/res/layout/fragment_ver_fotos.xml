@@ -9,21 +9,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.app.nextoque.controller.VerFotosFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar_ver_fotos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:indeterminate="true"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/azul" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/layout_item_ver_fotos"
         android:id="@+id/recyclerViewVerFotos">
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/tableVerFotos"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:orientation="vertical" />-->
     </androidx.recyclerview.widget.RecyclerView>
-
-
-
 
 </RelativeLayout>

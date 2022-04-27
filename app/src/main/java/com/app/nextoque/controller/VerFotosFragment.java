@@ -22,7 +22,6 @@ public class VerFotosFragment extends Fragment {
     private final Usuario usuario;
     private final String idProduto;
     private final NavigationView navigationView;
-   // private ListResult listResult;
 
     public VerFotosFragment(Usuario usuario, String idProduto, NavigationView navigationView) {
         this.usuario = usuario;
@@ -39,48 +38,28 @@ public class VerFotosFragment extends Fragment {
 
         titulo.setText("VER FOTOS");
 
+        binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                esconderNavigationView();
+            }
+        });
+
+        binding.progressBarVerFotos.setVisibility(View.VISIBLE);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         binding.recyclerViewVerFotos.setLayoutManager(layoutManager);
 
-        new FotoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarFotosProduto(binding.recyclerViewVerFotos, idProduto);
-
-//        new
-//
-////        Toolbar toolbar = new Toolbar(getContext());
-////
-////        Toolbar teste = (Toolbar) inflater.inflate(R.layout.action_bar_fotos, container).findViewById(R.id.toolbar);
-////        toolbar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-////        toolbar.setTitle("Fotos");
-////        toolbar.setTitleTextColor(Color.WHITE);
-////        toolbar.setBackgroundColor(Color.parseColor("#201F1F"));
-////        toolbar.inflateMenu(R.menu.menu_acoes_produto);
-////
-////        binding.getRoot().addView(teste);
-//
-//        List<Uri> listUriFotos = new ArrayList<>();
-//        FotoAdapter fotoAdapter = new FotoAdapter(getContext(), listUriFotos);
-//
-//        for(StorageReference fotoProduto : listResult.getItems()){
-//            fotoProduto.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                @Override
-//                public void onSuccess(Uri uri) {
-//                    listUriFotos.add(uri);
-//                    fotoAdapter.notifyItemInserted(listUriFotos.size()-1);
-////                    ImageView foto = new ImageView(getContext());
-////                    tableVerFotos.setGravity(Gravity.CENTER_VERTICAL);
-////                    foto.setPadding(10,10,10,10);
-////                    foto.setAdjustViewBounds(true);
-////                    foto.setBackgroundColor(Color.BLACK);
-////
-////                    tableVerFotos.addView(Glide.with(getContext()).load(uri).into(foto).getView());
-//                }
-//            });
-//        }
-//
-
+        new FotoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).buscarFotosProduto(binding.recyclerViewVerFotos, idProduto, binding.progressBarVerFotos, navigationView);
 
         return binding.getRoot();
+    }
+
+    private void esconderNavigationView() {
+        if(navigationView.getVisibility() == View.VISIBLE) {
+            navigationView.setVisibility(View.GONE);
+        }
     }
 }

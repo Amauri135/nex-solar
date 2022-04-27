@@ -11,16 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.nextoque.R;
 import com.bumptech.glide.Glide;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
 public class VerFotosAdapter extends RecyclerView.Adapter<VerFotosViewHolder> {
     private List<Uri> urisFotos;
     private Context context;
+    private final NavigationView navigationView;
 
-    public VerFotosAdapter(Context context, List<Uri> urisFotos) {
+    public VerFotosAdapter(Context context, List<Uri> urisFotos, NavigationView navigationView) {
         this.context = context;
         this.urisFotos = urisFotos;
+        this.navigationView = navigationView;
     }
 
     @NonNull
@@ -36,6 +39,15 @@ public class VerFotosAdapter extends RecyclerView.Adapter<VerFotosViewHolder> {
         Uri uriFoto = urisFotos.get(position);
 
         Glide.with(context).load(uriFoto).into(holder.getFoto());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(navigationView.getVisibility() == View.VISIBLE) {
+                    navigationView.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     @Override
