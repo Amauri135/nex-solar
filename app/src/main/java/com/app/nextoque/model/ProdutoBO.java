@@ -215,6 +215,8 @@ public class ProdutoBO {
         produtosReference.child(idProduto).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
+                new FotoBO(context, usuario, fragmentManager).excluirFotosProduto(idProduto);
+
                 Toast.makeText(context, "Produto excluído com sucesso!", Toast.LENGTH_SHORT).show();
 
                 fragmentManager.beginTransaction()

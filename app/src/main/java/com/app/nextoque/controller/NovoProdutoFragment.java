@@ -191,11 +191,9 @@ public class NovoProdutoFragment extends Fragment {
 
                 if ("primary".equalsIgnoreCase(type)) {
                     return Environment.getExternalStorageDirectory() + "/" + split[1];
-                } else {
+                } else { // handle non-primary volumes
                     return Environment.getExternalStorageDirectory().getParentFile().getParentFile() + "/" + type + "/" + split[1];
                 }
-
-                // TODO handle non-primary volumes
             }
             // DownloadsProvider
             else if (isDownloadsDocument(uri)) {

@@ -61,6 +61,11 @@
                     android:id="@+id/nav_liberar"
                     android:icon="@drawable/ic_liberar_acessos"
                     android:title="@string/liberar_acessos" />
+
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_logout_box_line"
+                    android:title="@string/encerrar_sessao" />
             </group>
         </menu>
 

@@ -96,10 +96,23 @@ public class FotoBO {
                     }
                 });
             } catch (FileNotFoundException e){
-                Toast.makeText(context, "Arquivo" + file.getName() + " não encontrado!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Arquivo " + file.getName() + " não encontrado!", Toast.LENGTH_SHORT).show();
             }
 
         }
+    }
+
+    public void excluirFotosProduto(String idProduto) {
+        fotoReference.child("/produtos/" + idProduto).listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                if(listResult != null && !listResult.getItems().isEmpty()) {
+                    for(StorageReference reference : listResult.getItems()) {
+                        reference.delete();
+                    }
+                }
+            }
+        });
     }
 
 }

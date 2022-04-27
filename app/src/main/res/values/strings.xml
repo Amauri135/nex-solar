@@ -36,4 +36,5 @@
     <string name="categoria">Categoria</string>
     <string name="listar_obras">Listar Obras</string>
     <string name="nova_obra">Nova Obra</string>
+    <string name="encerrar_sessao">Encerrar Sessão</string>
 </resources>

@@ -16,6 +16,7 @@ import com.app.nextoque.databinding.FragmentDashBinding;
 import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.enums.TipoUsuarioEnum;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class DashFragment extends Fragment {
 
@@ -63,6 +64,7 @@ public class DashFragment extends Fragment {
             }
         });
 
+        //  DASHBOARD
         navigationView.getMenu().findItem(R.id.nav_dashboard).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -71,6 +73,7 @@ public class DashFragment extends Fragment {
             }
         });
 
+        // RETIRAR
         navigationView.getMenu().findItem(R.id.nav_retirar).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -79,6 +82,7 @@ public class DashFragment extends Fragment {
             }
         });
 
+        // DEVOLVER
         navigationView.getMenu().findItem(R.id.nav_devolver).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -87,6 +91,7 @@ public class DashFragment extends Fragment {
             }
         });
 
+        // LISTAR PRODUTOS
         navigationView.getMenu().findItem(R.id.nav_listar).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -97,6 +102,7 @@ public class DashFragment extends Fragment {
                 || TipoUsuarioEnum.DIRETOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
                 || TipoUsuarioEnum.DEV.toString().equalsIgnoreCase(usuario.getTipoAtual()));
 
+        // NOVO PRODUTO
         navigationView.getMenu().findItem(R.id.nav_novo).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -105,6 +111,7 @@ public class DashFragment extends Fragment {
             }
         });
 
+        // LIBERAR ACESSOS
         navigationView.getMenu().findItem(R.id.nav_liberar).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -115,6 +122,7 @@ public class DashFragment extends Fragment {
                 || TipoUsuarioEnum.DIRETOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
                 || TipoUsuarioEnum.DEV.toString().equalsIgnoreCase(usuario.getTipoAtual()));
 
+        // NOVA OBRA
         navigationView.getMenu().findItem(R.id.nav_nova_obra).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -125,6 +133,7 @@ public class DashFragment extends Fragment {
                 || TipoUsuarioEnum.DIRETOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
                 || TipoUsuarioEnum.DEV.toString().equalsIgnoreCase(usuario.getTipoAtual()));
 
+        // LISTAR OBRAS
         navigationView.getMenu().findItem(R.id.nav_listar_obras).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -134,6 +143,19 @@ public class DashFragment extends Fragment {
         }).setVisible(TipoUsuarioEnum.ADMINISTRADOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
                 || TipoUsuarioEnum.DIRETOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
                 || TipoUsuarioEnum.DEV.toString().equalsIgnoreCase(usuario.getTipoAtual()));
+
+        // ENCERRAR SESSÃO
+        navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                FirebaseAuth.getInstance().signOut();
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new LoginFragment()).commit();
+
+                return false;
+            }
+        });
 
         replaceFragment(new DashContentFragment(usuario));
 
