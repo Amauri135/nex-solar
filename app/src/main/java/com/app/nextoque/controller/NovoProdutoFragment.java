@@ -26,7 +26,6 @@ import androidx.fragment.app.Fragment;
 
 import com.app.nextoque.R;
 import com.app.nextoque.databinding.FragmentCadastrarProdutoBinding;
-import com.app.nextoque.entity.Produto;
 import com.app.nextoque.entity.Usuario;
 import com.app.nextoque.model.ProdutoBO;
 import com.google.android.material.navigation.NavigationView;
@@ -36,6 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class NovoProdutoFragment extends Fragment {
@@ -102,30 +102,28 @@ public class NovoProdutoFragment extends Fragment {
 
             Toast.makeText(getContext(), "Preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
         } else {
-            Produto produto = new Produto();
+            HashMap<String, Object> params =  new HashMap<>();
 
-            produto.setDescricao(binding.descricao.getEditText().getText().toString());
-            produto.setCategoria(binding.categoria.getEditText().getText().toString());
-            produto.setUnidadeMedida(binding.unidadeMedida.getEditText().getText().toString());
+            params.put("descricao", binding.descricao.getEditText().getText().toString());
+            params.put("categoria", binding.categoria.getEditText().getText().toString());
+            params.put("unidadeMedida", binding.unidadeMedida.getEditText().getText().toString());
 
             Long quantidade = Long.valueOf(binding.quantidade.getEditText().getText().toString());
 
-            produto.setQuantidadeInicial(quantidade);
-            produto.setQuantidadeAtual(quantidade);
-
-            produto.setIdUsuario(FirebaseAuth.getInstance().getUid());
+            params.put("quantidade", quantidade);
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 
             Date data = Calendar.getInstance().getTime();
 
-            produto.setData(dateFormat.format(data));
-            produto.setHora(timeFormat.format(data));
+            params.put("data", dateFormat.format(data));
+            params.put("hora", timeFormat.format(data));
+            params.put("obs", binding.observacao.getEditText().getText() != null ? binding.observacao.getEditText().getText().toString() : null);
 
-            produto.setObs(binding.observacao.getEditText().getText() != null ? binding.observacao.getEditText().getText().toString() : null);
+            params.put("idUsuario", FirebaseAuth.getInstance().getUid());
 
-            new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(produto, fotosPathList, navigationView);
+            new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(params, fotosPathList, navigationView);
 
         }
     }

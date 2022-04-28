@@ -21,12 +21,14 @@ import com.app.nextoque.entity.Usuario;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class ProdutoBO {
@@ -118,7 +120,28 @@ public class ProdutoBO {
         });
     }
 
-    public void salvarProduto(Produto produto, List<String> fotosPathList, NavigationView navigationView) {
+    public void salvarProduto(HashMap<String, Object> params, List<String> fotosPathList, NavigationView navigationView) {
+        String descricao = (String) params.get("descricao");
+        String categoria = (String) params.get("categoria");
+        String unidadeMedida = (String) params.get("unidadeMedida");
+        Long quantidade = (Long) params.get("quantidade");
+        String data = (String) params.get("data");
+        String hora = (String) params.get("hora");
+        String obs = params.get("obs") != null ? (String) params.get("obs") : null;
+
+        Produto produto = new Produto();
+
+        produto.setDescricao(descricao);
+        produto.setCategoria(categoria);
+        produto.setUnidadeMedida(unidadeMedida);
+        produto.setQuantidadeInicial(quantidade);
+        produto.setQuantidadeAtual(quantidade);
+        produto.setData(data);
+        produto.setHora(hora);
+        produto.setObs(obs);
+
+        produto.setIdUsuario(FirebaseAuth.getInstance().getUid());
+
         DatabaseReference produtoReference = produtosReference.push();
 
         produtoReference.setValue(produto)
