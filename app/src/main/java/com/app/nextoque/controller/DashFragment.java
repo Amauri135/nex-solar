@@ -109,7 +109,9 @@ public class DashFragment extends Fragment {
                 replaceFragment(new NovoProdutoFragment(navigationView, usuario));
                 return false;
             }
-        });
+        }).setVisible(TipoUsuarioEnum.ADMINISTRADOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DIRETOR.toString().equalsIgnoreCase(usuario.getTipoAtual())
+                || TipoUsuarioEnum.DEV.toString().equalsIgnoreCase(usuario.getTipoAtual()));
 
         // LIBERAR ACESSOS
         navigationView.getMenu().findItem(R.id.nav_liberar).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {

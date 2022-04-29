@@ -104,19 +104,23 @@ public class EditarProdutoFragment extends Fragment {
         binding.salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String descricao = binding.descricao.getEditText().getText() != null ?
+                String descricao = binding.descricao.getEditText().getText() != null
+                        && !binding.descricao.getEditText().getText().toString().trim().isEmpty() ?
                         binding.descricao.getEditText().getText().toString() :
                         null;
 
-                String categoria = binding.categoria.getEditText().getText() != null ?
+                String categoria = binding.categoria.getEditText().getText() != null
+                        && !binding.categoria.getEditText().getText().toString().trim().isEmpty()?
                         binding.categoria.getEditText().getText().toString() :
                         null;
 
-                Long quantidade = binding.quantidade.getEditText().getText() != null ?
+                Long quantidade = binding.quantidade.getEditText().getText() != null
+                        && !binding.quantidade.getEditText().getText().toString().trim().isEmpty()?
                         Long.parseLong(binding.quantidade.getEditText().getText().toString()) :
                         null;
 
-                String unidadeMedida = binding.unidadeMedida.getEditText().getText() != null ?
+                String unidadeMedida = binding.unidadeMedida.getEditText().getText() != null
+                        && !binding.unidadeMedida.getEditText().getText().toString().trim().isEmpty()?
                         binding.unidadeMedida.getEditText().getText().toString() :
                         null;
 
@@ -128,16 +132,20 @@ public class EditarProdutoFragment extends Fragment {
                         binding.observacaoAlteracao.getEditText().getText().toString()
                         : null;
 
-                if(descricao == null || categoria == null || quantidade == null || unidadeMedida == null) {
+                if(descricao == null || descricao.trim().isEmpty()
+                        || categoria == null ||  categoria.trim().isEmpty()
+                        || quantidade == null || unidadeMedida == null) {
                     Toast.makeText(getContext(), "Informe todos os campos obrigatórios!", Toast.LENGTH_SHORT).show();
+                } else if(quantidade == 0L) {
+                    Toast.makeText(getContext(), "A quantidade não pode ser zero!", Toast.LENGTH_SHORT).show();
                 } else {
-                    produto.setDescricao(descricao);
-                    produto.setCategoria(categoria);
-                    produto.setQuantidadeInicial(quantidade);
-                    produto.setUnidadeMedida(unidadeMedida);
-                    produto.setObs(obs);
+                        produto.setDescricao(descricao);
+                        produto.setCategoria(categoria);
+                        produto.setQuantidadeInicial(quantidade);
+                        produto.setUnidadeMedida(unidadeMedida);
+                        produto.setObs(obs);
 
-                    new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).editarProduto(produto, obsAlteracao);
+                        new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).editarProduto(produto, obsAlteracao);
                 }
             }
         });

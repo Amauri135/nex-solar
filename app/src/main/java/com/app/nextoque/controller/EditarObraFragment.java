@@ -96,19 +96,23 @@ public class EditarObraFragment extends Fragment {
         binding.salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nome = binding.nome.getEditText().getText() != null ?
+                String nome = binding.nome.getEditText().getText() != null
+                        && !binding.nome.getEditText().getText().toString().isEmpty() ?
                         binding.nome.getEditText().getText().toString()
                         : null;
 
-                String endereco = binding.endereco.getEditText().getText() != null ?
+                String endereco = binding.endereco.getEditText().getText() != null
+                        && !binding.endereco.getEditText().getText().toString().isEmpty() ?
                         binding.endereco.getEditText().getText().toString() :
                         null;
 
-                String cidade = binding.cidade.getEditText().getText() != null ?
+                String cidade = binding.cidade.getEditText().getText() != null
+                        && !binding.cidade.getEditText().getText().toString().isEmpty() ?
                         binding.cidade.getEditText().getText().toString() :
                         null;
 
-                String responsavel = binding.responsavel.getEditText().getText() != null ?
+                String responsavel = binding.responsavel.getEditText().getText() != null
+                        && !binding.responsavel.getEditText().getText().toString().isEmpty() ?
                         binding.responsavel.getEditText().getText().toString() :
                         null;
 

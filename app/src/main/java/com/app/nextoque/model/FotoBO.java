@@ -3,6 +3,7 @@ package com.app.nextoque.model;
 import android.content.Context;
 import android.net.Uri;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -73,7 +74,7 @@ public class FotoBO {
         });
     }
 
-    public void salvarFotosProduto(List<String> fotosPathList, String idProduto, NavigationView navigationView) {
+    public void salvarFotosProduto(List<String> fotosPathList, String idProduto, NavigationView navigationView, Button btnSalvar) {
         StorageReference fotosProdutoReference = fotoReference.child("/produtos/" + idProduto);
 
         for(String fotoPath : fotosPathList) {
@@ -88,6 +89,7 @@ public class FotoBO {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(context, "Falha ao fazer upload do arquivo " + file.getName(), Toast.LENGTH_SHORT).show();
+                        btnSalvar.setClickable(true);
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -101,6 +103,7 @@ public class FotoBO {
                 });
             } catch (FileNotFoundException e){
                 Toast.makeText(context, "Arquivo " + file.getName() + " não encontrado!", Toast.LENGTH_SHORT).show();
+                btnSalvar.setClickable(true);
             }
 
         }

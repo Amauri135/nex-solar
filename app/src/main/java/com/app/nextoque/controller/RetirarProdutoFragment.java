@@ -83,7 +83,7 @@ public class RetirarProdutoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Integer quantidade =
-                        binding.quantidade.getEditText() == null || binding.quantidade.getEditText().toString().trim().isEmpty() ?
+                        binding.quantidade.getEditText() == null || binding.quantidade.getEditText().getText().toString().trim().isEmpty() ?
                                 null :
                                 Integer.parseInt(binding.quantidade.getEditText().getText().toString());
 

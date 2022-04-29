@@ -2,6 +2,7 @@ package com.app.nextoque.model;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -120,53 +121,59 @@ public class ProdutoBO {
         });
     }
 
-    public void salvarProduto(HashMap<String, Object> params, List<String> fotosPathList, NavigationView navigationView) {
-        String descricao = (String) params.get("descricao");
-        String categoria = (String) params.get("categoria");
-        String unidadeMedida = (String) params.get("unidadeMedida");
+    public void salvarProduto(HashMap<String, Object> params, List<String> fotosPathList, NavigationView navigationView, Button btnSalvar) {
         Long quantidade = (Long) params.get("quantidade");
-        String data = (String) params.get("data");
-        String hora = (String) params.get("hora");
-        String obs = params.get("obs") != null ? (String) params.get("obs") : null;
 
-        Produto produto = new Produto();
+        if(quantidade == 0L) {
+            Toast.makeText(context, "A quantidade deve ser maior do que zero!", Toast.LENGTH_SHORT).show();
+        } else {
+            String descricao = (String) params.get("descricao");
+            String categoria = (String) params.get("categoria");
+            String unidadeMedida = (String) params.get("unidadeMedida");
+            String data = (String) params.get("data");
+            String hora = (String) params.get("hora");
+            String obs = params.get("obs") != null ? (String) params.get("obs") : null;
 
-        produto.setDescricao(descricao);
-        produto.setCategoria(categoria);
-        produto.setUnidadeMedida(unidadeMedida);
-        produto.setQuantidadeInicial(quantidade);
-        produto.setQuantidadeAtual(quantidade);
-        produto.setData(data);
-        produto.setHora(hora);
-        produto.setObs(obs);
+            Produto produto = new Produto();
 
-        produto.setIdUsuario(FirebaseAuth.getInstance().getUid());
+            produto.setDescricao(descricao);
+            produto.setCategoria(categoria);
+            produto.setUnidadeMedida(unidadeMedida);
+            produto.setQuantidadeInicial(quantidade);
+            produto.setQuantidadeAtual(quantidade);
+            produto.setData(data);
+            produto.setHora(hora);
+            produto.setObs(obs);
 
-        DatabaseReference produtoReference = produtosReference.push();
+            produto.setIdUsuario(FirebaseAuth.getInstance().getUid());
 
-        produtoReference.setValue(produto)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        produto.setId(produtoReference.getKey());
+            DatabaseReference produtoReference = produtosReference.push();
 
-                        if(fotosPathList.isEmpty()){
-                            Toast.makeText(context, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+            produtoReference.setValue(produto)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            produto.setId(produtoReference.getKey());
 
-                            fragmentManager.beginTransaction()
-                                    .replace(R.id.frame_layout, new NovoProdutoFragment(navigationView, usuario))
-                                    .commit();
-                        } else {
-                            new FotoBO(context, usuario, fragmentManager).salvarFotosProduto(fotosPathList, produto.getId(), navigationView);
+                            if(fotosPathList.isEmpty()){
+                                Toast.makeText(context, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                                fragmentManager.beginTransaction()
+                                        .replace(R.id.frame_layout, new NovoProdutoFragment(navigationView, usuario))
+                                        .commit();
+                            } else {
+                                new FotoBO(context, usuario, fragmentManager).salvarFotosProduto(fotosPathList, produto.getId(), navigationView, btnSalvar);
+                            }
+
                         }
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Ocorreu uma falha ao salvar o produto.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(context, "Ocorreu uma falha ao salvar o produto.", Toast.LENGTH_SHORT).show();
+                    btnSalvar.setClickable(true);
+                }
+            });
+        }
     }
 
     public void buscarProdutosRetirarProduto(Spinner spinnerProdutos) {

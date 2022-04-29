@@ -87,6 +87,7 @@ public class NovoProdutoFragment extends Fragment {
         binding.salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                binding.salvar.setClickable(false);
                 salvarProduto();
             }
         });
@@ -96,9 +97,13 @@ public class NovoProdutoFragment extends Fragment {
 
     private void salvarProduto() {
         if (binding.descricao.getEditText().getText() == null ||
+                binding.descricao.getEditText().getText().toString().trim().isEmpty() ||
                 binding.categoria.getEditText().getText() == null ||
+                binding.categoria.getEditText().getText().toString().trim().isEmpty() ||
                 binding.unidadeMedida.getEditText().getText() == null ||
-                binding.quantidade.getEditText().getText() == null) {
+                binding.unidadeMedida.getEditText().getText().toString().trim().isEmpty() ||
+                binding.quantidade.getEditText().getText() == null ||
+                binding.quantidade.getEditText().getText().toString().trim().isEmpty()) {
 
             Toast.makeText(getContext(), "Preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show();
         } else {
@@ -123,7 +128,7 @@ public class NovoProdutoFragment extends Fragment {
 
             params.put("idUsuario", FirebaseAuth.getInstance().getUid());
 
-            new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(params, fotosPathList, navigationView);
+            new ProdutoBO(getContext(), usuario, getActivity().getSupportFragmentManager()).salvarProduto(params, fotosPathList, navigationView, binding.salvar);
 
         }
     }
