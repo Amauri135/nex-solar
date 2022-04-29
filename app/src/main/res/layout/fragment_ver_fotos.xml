@@ -20,9 +20,20 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
+        android:layout_centerInParent="true"
         android:layout_height="wrap_content"
         tools:listitem="@layout/layout_item_ver_fotos"
         android:id="@+id/recyclerViewVerFotos">
     </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/azul"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:tint="@color/black"
+        android:layout_margin="30dp"
+        android:src="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

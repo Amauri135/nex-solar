@@ -48,14 +48,14 @@ public class FotoBO {
 
         List<Uri> urisFotos = new ArrayList<>();
 
-        VerFotosAdapter verFotosAdapter = new VerFotosAdapter(context, urisFotos, navigationView);
+        VerFotosAdapter verFotosAdapter = new VerFotosAdapter(context, urisFotos, usuario, recyclerViewVerFotos, fragmentManager, navigationView);
 
         recyclerViewVerFotos.setAdapter(verFotosAdapter);
 
         fotosProdutoReference.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
             public void onSuccess(ListResult listResult) {
-                if(listResult != null && listResult.getItems() != null && !listResult.getItems().isEmpty()){
+                if(listResult != null && !listResult.getItems().isEmpty()){
 
                     for(StorageReference storageReference : listResult.getItems()){
                         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -69,6 +69,10 @@ public class FotoBO {
                     }
 
                     progressBar.setVisibility(View.GONE);
+                } else {
+                    progressBar.setVisibility(View.GONE);
+
+                    Toast.makeText(context, "Esse produto não possui fotos", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -118,6 +122,19 @@ public class FotoBO {
                         reference.delete();
                     }
                 }
+            }
+        });
+    }
+
+    public void excluirFoto(@NonNull Uri uri, List<Uri> uriList, VerFotosAdapter adapter, int position) {
+        FirebaseStorage.getInstance().getReferenceFromUrl(uri.toString()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(context, "Foto excluída com sucesso!", Toast.LENGTH_SHORT).show();
+
+                uriList.remove(position);
+
+                adapter.notifyItemRemoved(position);
             }
         });
     }
