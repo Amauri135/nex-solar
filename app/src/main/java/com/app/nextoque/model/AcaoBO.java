@@ -165,7 +165,7 @@ public class AcaoBO {
                                 acoesList.add(child.getValue(Acao.class));
                             }
 
-                            for(int i = 0; i < 5 && (acoesList.size()-i > 0); i++){
+                            for(int i = 0;(acoesList.size()-i > 0); i++){
                                 ultimasAcoesList.add(acoesList.get(acoesList.size()-1-i));
                                 acaoAdapter.notifyItemInserted(ultimasAcoesList.size()-1);
                             }
