@@ -27,13 +27,17 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+       android:id="@+id/btnAdicionarFotos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/azul"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:tint="@color/black"
-        android:layout_margin="30dp"
-        android:src="@android:drawable/ic_input_add" />
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/azul"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/black" />
 
 </RelativeLayout>

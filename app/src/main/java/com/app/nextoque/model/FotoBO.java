@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.nextoque.R;
 import com.app.nextoque.adapter.VerFotosAdapter;
 import com.app.nextoque.controller.NovoProdutoFragment;
+import com.app.nextoque.controller.VerFotosFragment;
 import com.app.nextoque.entity.Usuario;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -108,6 +109,39 @@ public class FotoBO {
             } catch (FileNotFoundException e){
                 Toast.makeText(context, "Arquivo " + file.getName() + " não encontrado!", Toast.LENGTH_SHORT).show();
                 btnSalvar.setClickable(true);
+            }
+
+        }
+    }
+
+    public void adicionarFotosProduto(List<String> fotosPathList, String idProduto, NavigationView navigationView) {
+        StorageReference fotosProdutoReference = fotoReference.child("/produtos/" + idProduto);
+
+        for(String fotoPath : fotosPathList) {
+            File file = new File(fotoPath);
+
+            StorageReference imgReference = fotosProdutoReference.child(file.getName());
+
+            try {
+                InputStream stream = new FileInputStream(file);
+
+                imgReference.putStream(stream).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Falha ao fazer upload do arquivo " + file.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(context, "Foto(s) cadastrada(s) com sucesso!", Toast.LENGTH_SHORT).show();
+
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.frame_layout, new VerFotosFragment(usuario, idProduto, navigationView))
+                                .commit();
+                    }
+                });
+            } catch (FileNotFoundException e){
+                Toast.makeText(context, "Arquivo " + file.getName() + " não encontrado!", Toast.LENGTH_SHORT).show();
             }
 
         }
